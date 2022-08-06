@@ -5,7 +5,7 @@ import {useStores} from "../../stores";
 import {CreateMenuEnum} from "../../types";
 
 const Questions: NextPage = observer(() => {
-    const {createStore}=useStores();
+    const {createMenuStore}=useStores();
     return (
         <div>
             <StyledQuestion>
@@ -13,7 +13,7 @@ const Questions: NextPage = observer(() => {
             </StyledQuestion>
             <input/> <input/>
             {
-                createStore && createStore.menu === CreateMenuEnum.ALGORITHM &&
+                createMenuStore && createMenuStore.menu === CreateMenuEnum.ALGORITHM &&
                 <>
                     <StyledQuestion>
                         OJ 핸들을 입력해주세요! (BOJ / 코포 / 앳코더)
@@ -22,7 +22,7 @@ const Questions: NextPage = observer(() => {
                 </>
             }
             {
-                createStore && createStore.menu === CreateMenuEnum.ALGORITHM &&
+                createMenuStore && createMenuStore.menu === CreateMenuEnum.ALGORITHM &&
                 <>
                     <StyledQuestion>
                         솔브드 티어를 표시할까요?
@@ -31,7 +31,7 @@ const Questions: NextPage = observer(() => {
                 </>
             }
             {
-                createStore && createStore.menu === CreateMenuEnum.FRONTEND &&
+                createMenuStore && createMenuStore.menu === CreateMenuEnum.FRONTEND &&
                 <>
                     <StyledQuestion>
                         기술 스택을 입력해주세요!
