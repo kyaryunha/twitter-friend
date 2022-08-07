@@ -112,11 +112,11 @@ const Questions: NextPage = observer(() => {
             </StyledQuestion>
             <StyledCheckbox><input type="checkbox" id="contents-1"/><label htmlFor="contents-1">일상트</label></StyledCheckbox>
             <StyledCheckbox><input type="checkbox" id="contents-2"/><label htmlFor="contents-2">개발트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-2"/><label htmlFor="contents-2">욕트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-2"/><label htmlFor="contents-2">우울트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-2"/><label htmlFor="contents-2">19금트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-2"/><label htmlFor="contents-2">마음요정</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-3"/><label htmlFor="contents-3">RT 많음</label></StyledCheckbox>
+            <StyledCheckbox><input type="checkbox" id="contents-3"/><label htmlFor="contents-3">욕트</label></StyledCheckbox>
+            <StyledCheckbox><input type="checkbox" id="contents-4"/><label htmlFor="contents-4">우울트</label></StyledCheckbox>
+            <StyledCheckbox><input type="checkbox" id="contents-5"/><label htmlFor="contents-5">19금트</label></StyledCheckbox>
+            <StyledCheckbox><input type="checkbox" id="contents-6"/><label htmlFor="contents-6">마음요정</label></StyledCheckbox>
+            <StyledCheckbox><input type="checkbox" id="contents-7"/><label htmlFor="contents-7">RT 많음</label></StyledCheckbox>
             <StyledQuestion>
                 그 외에도 주로 파는 분야가 있으면 적어주세요!
             </StyledQuestion>
