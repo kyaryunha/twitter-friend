@@ -5,7 +5,7 @@ import {MediaQuery} from "./media-query";
 export const StyledMainDiv = styled.div`
   color: white;
   padding: 20px;
-  margin: 20px 50px;
+  margin: 20px 5px;
   ${MediaQuery[0]} {
     margin: 100px;
   }

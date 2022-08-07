@@ -12,7 +12,7 @@ export const StyledMenuItem = styled.div`
   border-radius: 10px;
   padding: 20px;
   font-size: 120%;
-  margin: 10px 20px 10px 0;
+  margin: 10px 0;
   ${MediaQuery[0]} {
     display: inline-block;
     margin: 10px 20px 10px 0;
