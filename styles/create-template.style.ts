@@ -12,10 +12,19 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInputText = styled.input`
-  margin-left: 8px;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
   padding: 2px 5px;
+
   &:focus {
     outline: none;
+  }
+
+  ${MediaQuery[0]} {
+    display: inline-block;
+    margin: 0 0 0 8px;
+    width: 400px;
   }
 `;
 export const StyledSelect = styled.select`

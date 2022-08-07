@@ -1,4 +1,5 @@
 import {action, makeObservable, observable} from "mobx";
+import {contentsTextArr, farewellsTextArr, followsTextArr} from "../components/create-template/questions.util";
 
 export type QuestionsStoreProps = {
     twitterId?: string,
@@ -13,6 +14,8 @@ export type QuestionsStoreProps = {
     contents?: object,
     fields?: object,
     introduce?: string,
+    follows?: object,
+    farewells?: object,
 }
 
 export class QuestionsStore {
@@ -25,9 +28,11 @@ export class QuestionsStore {
     @observable githubId:string = "";
     @observable url1:string = "";
     @observable url2:string = "";
-    @observable contents:object = [];
+    @observable contents:object = Array(contentsTextArr.length).fill(false);
     @observable fields:object = [];
     @observable introduce:string = "";
+    @observable follows: object = Array(followsTextArr.length).fill(false);
+    @observable farewells: object = Array(farewellsTextArr.length).fill(false);
     @action
     public update = (answers:QuestionsStoreProps) => {
         if (answers.hasOwnProperty('twitterId') && typeof answers.twitterId === "string") this.twitterId = answers.twitterId;
@@ -42,6 +47,8 @@ export class QuestionsStore {
         if (answers.hasOwnProperty('contents') && typeof answers.contents === "object") this.contents = answers.contents;
         if (answers.hasOwnProperty('fields') && typeof answers.fields === "object") this.fields = answers.fields;
         if (answers.hasOwnProperty('introduce') && typeof answers.introduce === "string") this.introduce = answers.introduce;
+        if (answers.hasOwnProperty('follows') && typeof answers.follows === "object") this.follows = answers.follows;
+        if (answers.hasOwnProperty('farewells') && typeof answers.farewells === "object") this.farewells = answers.farewells;
     }
     constructor() {
         makeObservable(this);
