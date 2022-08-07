@@ -12,6 +12,7 @@ import {observer} from "mobx-react";
 import {useStores} from "../../stores";
 import {CreateMenuEnum} from "../../types";
 import {useState} from "react";
+import {contentsTextArr, farewellsTextArr, followsTextArr} from "./questions.util";
 const Questions: NextPage = observer(() => {
     const {createMenuStore, questionsStore}=useStores();
     const [twitterNickname, setTwitterNickname] = useState("");
@@ -23,10 +24,13 @@ const Questions: NextPage = observer(() => {
     const [githubId, setGithubId] = useState("");
     const [url1, setUrl1] = useState("");
     const [url2, setUrl2] = useState("");
-    const [contents, setContents] = useState({});
+    const [contents, setContents] = useState(Array(contentsTextArr.length).fill(false));
     const [fields, setFields] = useState("");
     const [introduce, setIntroduce] = useState("");
+    const [follows, setFollows] = useState(Array(followsTextArr.length).fill(false));
+    const [farewells, setFarewells] = useState(Array(farewellsTextArr.length).fill(false));
     const handleClick = () => {
+        let fieldsArr = [fields];
         questionsStore.update({
             twitterNickname,
             twitterId,
@@ -38,9 +42,34 @@ const Questions: NextPage = observer(() => {
             url1,
             url2,
             contents,
-            fields: [],
+            fields: fieldsArr,
             introduce,
+            follows,
+            farewells,
         })
+    };
+    const handleCheck = (type:string, idx:number, checked: boolean) => {
+        if (type === "contents") {
+            setContents((prevArr) => {
+                let newArr = prevArr;
+                newArr[idx] = checked;
+                return newArr;
+            });
+        }
+        else if (type === "follows") {
+            setFollows((prevArr) => {
+                let newArr = prevArr;
+                newArr[idx] = checked;
+                return newArr;
+            });
+        }
+        else if(type === "farawells") {
+            setFarewells((prevArr) => {
+                let newArr = prevArr;
+                newArr[idx] = checked;
+                return newArr;
+            });
+        }
     };
     return (
         <>
@@ -110,13 +139,14 @@ const Questions: NextPage = observer(() => {
             <StyledQuestion>
                 트윗 주요 콘텐츠
             </StyledQuestion>
-            <StyledCheckbox><input type="checkbox" id="contents-1"/><label htmlFor="contents-1">일상트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-2"/><label htmlFor="contents-2">개발트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-3"/><label htmlFor="contents-3">욕트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-4"/><label htmlFor="contents-4">우울트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-5"/><label htmlFor="contents-5">19금트</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-6"/><label htmlFor="contents-6">마음요정</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="contents-7"/><label htmlFor="contents-7">RT 많음</label></StyledCheckbox>
+            {
+                contentsTextArr.map((text, idx) => {
+                    return <StyledCheckbox key={`checkbox-contents-${idx}`}>
+                        <input type="checkbox" id={`contents-${idx}`} onChange={(e) => handleCheck("contents", idx, e.target.checked)}/>
+                        <label htmlFor={`contents-${idx}`}>{text}</label>
+                    </StyledCheckbox>
+                })
+            }
             <StyledQuestion>
                 그 외에도 주로 파는 분야가 있으면 적어주세요!
             </StyledQuestion>
@@ -132,16 +162,25 @@ const Questions: NextPage = observer(() => {
             <StyledQuestion>
                 맞팔하는 경우
             </StyledQuestion>
-            <StyledCheckbox><input type="checkbox" id="follow-1"/><label htmlFor="follow-1">트친소 알티</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="follow-2"/><label htmlFor="follow-2">트친소 마음</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="follow-3"/><label htmlFor="follow-3">멘션</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="follow-4"/><label htmlFor="follow-4">선팔</label></StyledCheckbox>
+            {
+                followsTextArr.map((text, idx) => {
+                    return <StyledCheckbox key={`checkbox-follows-${idx}`}>
+                        <input type="checkbox" id={`follows-${idx}`} onChange={(e) => handleCheck("follows", idx, e.target.checked)}/>
+                        <label htmlFor={`follows-${idx}`}>{text}</label>
+                    </StyledCheckbox>
+                })
+            }
             <StyledQuestion>
                 이별시
             </StyledQuestion>
-            <StyledCheckbox><input type="checkbox" id="farewell-1"/><label htmlFor="farewell-1">블락</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="farewell-2"/><label htmlFor="farewell-2">블언블</label></StyledCheckbox>
-            <StyledCheckbox><input type="checkbox" id="farewell-3"/><label htmlFor="farewell-3">언팔</label></StyledCheckbox>
+            {
+                farewellsTextArr.map((text, idx) => {
+                    return <StyledCheckbox key={`checkbox-farewells-${idx}`}>
+                        <input type="checkbox" id={`farewells-${idx}`} onChange={(e) => handleCheck("farewells", idx, e.target.checked)}/>
+                        <label htmlFor={`farewells-${idx}`}>{text}</label>
+                    </StyledCheckbox>
+                })
+            }
             <StyledButton onClick={handleClick}>
                 Create
             </StyledButton>
