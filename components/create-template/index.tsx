@@ -2,6 +2,7 @@ import {NextPage} from "next";
 import {useStores} from "../../stores";
 import {observer} from "mobx-react";
 import Questions from "./questions";
+import {StyledButton} from "../../styles/create-template.style";
 
 const CreateTemplate: NextPage = observer(() => {
         return (
