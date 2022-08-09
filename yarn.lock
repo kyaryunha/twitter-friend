@@ -55,7 +55,7 @@
     core-js-pure "^3.20.2"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.18.9":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.15.3", "@babel/runtime@^7.18.3", "@babel/runtime@^7.18.9":
   version "7.18.9"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
   integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
@@ -70,6 +70,21 @@
     "@babel/helper-string-parser" "^7.18.10"
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
+
+"@emotion-icons/emotion-icon@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@emotion-icons/emotion-icon/-/emotion-icon-4.1.0.tgz#587667e92a72dc3b271713eed4b72c6bf3b22df1"
+  integrity sha512-bOUbWj8DPjUK5MtRx2ApMudOnh/tasqJwa+sdRbqsZD0g0hYf0jCsTDNs/57VvGOJH2PfWDKD1jbLjwajAYT9A==
+  dependencies:
+    "@babel/runtime" "^7.14.0"
+
+"@emotion-icons/fa-brands@^3.19.0":
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/@emotion-icons/fa-brands/-/fa-brands-3.19.0.tgz#5b62224ee4cd84d32351c197fa8ed589bfec649f"
+  integrity sha512-uzGhn+ydKjc9ju+oHYCYgQOHJBf1RhKdj7I8CV+RirlbuzY9rORvqRPu6OqJpQ/j2MbS2qN/zzFlTJt4JA0q4w==
+  dependencies:
+    "@babel/runtime" "^7.15.3"
+    "@emotion-icons/emotion-icon" "4.1.0"
 
 "@emotion/babel-plugin@^11.10.0":
   version "11.10.0"

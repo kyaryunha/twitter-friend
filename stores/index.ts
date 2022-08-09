@@ -1,10 +1,8 @@
 import {createContext, useContext} from "react";
-import {CreateMenuStore} from "./create-menu.store";
-import {QuestionsStore} from "./questions.store";
+import {AlgorithmQuestionsStore} from "./algorithm-questions.store";
 
 export const rootStore = {
-    createMenuStore: new CreateMenuStore(),
-    questionsStore: new QuestionsStore(),
+    algorithmQuestionsStore: new AlgorithmQuestionsStore(),
 }
 export const rootStoreContext = createContext(rootStore);
 
