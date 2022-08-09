@@ -1,7 +1,7 @@
 import {action, makeObservable, observable} from "mobx";
 import {contentsTextArr, farewellsTextArr, followsTextArr} from "../components/create-template/questions.util";
 
-export type QuestionsStoreProps = {
+export type AlgorithmQuestionsStoreProps = {
     twitterId?: string,
     twitterNickname?: string,
     bojId?: string,
@@ -11,14 +11,14 @@ export type QuestionsStoreProps = {
     solvedacTier?: string,
     url1?: string,
     url2?: string,
-    contents?: object,
-    fields?: object,
-    introduce?: string,
-    follows?: object,
-    farewells?: object,
+    contents?: boolean[],
+    likes?: string[],
+    introduce?: string[],
+    follows?: boolean[],
+    farewells?: boolean[],
 }
 
-export class QuestionsStore {
+export class AlgorithmQuestionsStore {
     @observable twitterId:string = "";
     @observable twitterNickname:string = "";
     @observable bojId:string = "";
@@ -28,13 +28,13 @@ export class QuestionsStore {
     @observable githubId:string = "";
     @observable url1:string = "";
     @observable url2:string = "";
-    @observable contents:object = Array(contentsTextArr.length).fill(false);
-    @observable fields:object = [];
-    @observable introduce:string = "";
-    @observable follows: object = Array(followsTextArr.length).fill(false);
-    @observable farewells: object = Array(farewellsTextArr.length).fill(false);
+    @observable contents:boolean[] = Array(contentsTextArr.length).fill(false);
+    @observable likes:string[] = [];
+    @observable introduce:string[] = [];
+    @observable follows: boolean[] = Array(followsTextArr.length).fill(false);
+    @observable farewells: boolean[] = Array(farewellsTextArr.length).fill(false);
     @action
-    public update = (answers:QuestionsStoreProps) => {
+    public update = (answers:AlgorithmQuestionsStoreProps) => {
         if (answers.hasOwnProperty('twitterId') && typeof answers.twitterId === "string") this.twitterId = answers.twitterId;
         if (answers.hasOwnProperty('twitterNickname') && typeof answers.twitterNickname === "string") this.twitterNickname = answers.twitterNickname;
         if (answers.hasOwnProperty('bojId') && typeof answers.bojId === "string") this.bojId = answers.bojId;
@@ -45,8 +45,8 @@ export class QuestionsStore {
         if (answers.hasOwnProperty('url1') && typeof answers.url1 === "string") this.url1 = answers.url1;
         if (answers.hasOwnProperty('url2') && typeof answers.url2 === "string") this.url2 = answers.url2;
         if (answers.hasOwnProperty('contents') && typeof answers.contents === "object") this.contents = answers.contents;
-        if (answers.hasOwnProperty('fields') && typeof answers.fields === "object") this.fields = answers.fields;
-        if (answers.hasOwnProperty('introduce') && typeof answers.introduce === "string") this.introduce = answers.introduce;
+        if (answers.hasOwnProperty('likes') && typeof answers.likes === "object") this.likes = answers.likes;
+        if (answers.hasOwnProperty('introduce') && typeof answers.introduce === "object") this.introduce = answers.introduce;
         if (answers.hasOwnProperty('follows') && typeof answers.follows === "object") this.follows = answers.follows;
         if (answers.hasOwnProperty('farewells') && typeof answers.farewells === "object") this.farewells = answers.farewells;
     }

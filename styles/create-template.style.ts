@@ -1,6 +1,26 @@
 import styled from "@emotion/styled";
-import {MediaQuery} from "./media-query";
+import {BREAKPOINTS, MediaQuery} from "./media-query";
 
+export const StyledCreateTemplate = styled.div`
+  display: block;
+  ${MediaQuery[1]} { 
+    display: flex;
+  }
+`;
+export const StyledQuestions = styled.div`
+  ${MediaQuery[1]} { 
+    width: ${BREAKPOINTS[0]};
+  }
+`;
+export const StyledCreateSvg = styled.div`
+  ${MediaQuery[1]} { 
+    width: 100%;
+  }
+`;
+
+export const StyledSvg = styled.svg`
+  user-select: none;
+`;
 export const StyledQuestion = styled.div`
   margin: 30px 0;
   font-size: 120%;
@@ -20,12 +40,6 @@ export const StyledInputText = styled.input`
   &:focus {
     outline: none;
   }
-
-  ${MediaQuery[0]} {
-    display: inline-block;
-    margin: 0 0 0 8px;
-    width: 400px;
-  }
 `;
 export const StyledSelect = styled.select`
   margin-left: 8px;
@@ -39,9 +53,6 @@ export const StyledTextarea = styled.textarea`
   padding: 2px 5px;
   &:focus {
     outline: none;
-  }
-  ${MediaQuery[0]} {
-    width: 400px;
   }
 `;
 export const StyledCheckbox = styled.div`

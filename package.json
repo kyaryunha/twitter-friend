@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion-icons/fa-brands": "^3.19.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "mobx": "^6.6.1",

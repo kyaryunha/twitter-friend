@@ -1,20 +1,25 @@
-import {NextPage} from "next";
 import {
     StyledButton,
     StyledCheckbox,
     StyledInputText,
     StyledLabel,
     StyledQuestion,
+    StyledQuestions,
     StyledSelect,
     StyledTextarea
 } from "../../styles/create-template.style";
 import {observer} from "mobx-react";
 import {useStores} from "../../stores";
-import {CreateMenuEnum} from "../../types";
-import {useState} from "react";
+import {FC, useState} from "react";
 import {contentsTextArr, farewellsTextArr, followsTextArr} from "./questions.util";
-const Questions: NextPage = observer(() => {
-    const {createMenuStore, questionsStore}=useStores();
+import {MenuText} from "../../utils";
+import {AtcoderTier, CodeforcesTier, SolvedAcTier} from "../../utils/online-judge.constant";
+
+type QuestionsProps = {
+    menu: string,
+}
+const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
+    const {algorithmQuestionsStore}=useStores();
     const [twitterNickname, setTwitterNickname] = useState("");
     const [twitterId, setTwitterId] = useState("");
     const [bojId, setBojId] = useState("");
@@ -25,13 +30,14 @@ const Questions: NextPage = observer(() => {
     const [url1, setUrl1] = useState("");
     const [url2, setUrl2] = useState("");
     const [contents, setContents] = useState(Array(contentsTextArr.length).fill(false));
-    const [fields, setFields] = useState("");
+    const [likes, setLikes] = useState("");
     const [introduce, setIntroduce] = useState("");
     const [follows, setFollows] = useState(Array(followsTextArr.length).fill(false));
     const [farewells, setFarewells] = useState(Array(farewellsTextArr.length).fill(false));
     const handleClick = () => {
-        let fieldsArr = [fields];
-        questionsStore.update({
+        let likesArr = likes.split('\n');
+        let introduceArr = introduce.split('\n');
+        algorithmQuestionsStore.update({
             twitterNickname,
             twitterId,
             bojId,
@@ -42,8 +48,8 @@ const Questions: NextPage = observer(() => {
             url1,
             url2,
             contents,
-            fields: fieldsArr,
-            introduce,
+            likes: likesArr,
+            introduce: introduceArr,
             follows,
             farewells,
         })
@@ -63,7 +69,7 @@ const Questions: NextPage = observer(() => {
                 return newArr;
             });
         }
-        else if(type === "farawells") {
+        else if(type === "farewells") {
             setFarewells((prevArr) => {
                 let newArr = prevArr;
                 newArr[idx] = checked;
@@ -72,7 +78,7 @@ const Questions: NextPage = observer(() => {
         }
     };
     return (
-        <>
+        <StyledQuestions>
             <StyledQuestion>
                 트위터 닉네임 및 아이디을 입력해주세요!
             </StyledQuestion>
@@ -80,45 +86,67 @@ const Questions: NextPage = observer(() => {
                 트위터 닉네임
                 <StyledInputText type="text" placeholder="까룬" value={twitterNickname} onChange={(e) =>setTwitterNickname(e.target.value)} />
             </StyledLabel>
-
             <StyledLabel>
                 트위터 ID
                 <StyledInputText type="text" placeholder="shinhyun_main" value={twitterId} onChange={(e) =>setTwitterId(e.target.value)} />
             </StyledLabel>
             {
-                createMenuStore && createMenuStore.menu === CreateMenuEnum.ALGORITHM &&
+                menu === MenuText.algorithm &&
                 <>
                     <StyledQuestion>
-                        OJ 핸들을 입력해주세요! (BOJ / 코포 / 앳코더)
+                        온라인 져지 핸들을 입력해주세요! (BOJ / 코포 / 앳코더)
                     </StyledQuestion>
                     <StyledLabel>
                         BOJ
-                        <StyledInputText type="text" placeholder="kyaryunha_cpp" value={bojId} onChange={(e) =>setBojId(e.target.value)} />
+                        <StyledInputText type="text" placeholder="kyaryunha_cpp (없으면 공백)" value={bojId} onChange={(e) =>setBojId(e.target.value)} />
                     </StyledLabel>
                     <StyledLabel>
-                        Codeforces
-                        <StyledInputText type="text" placeholder="shin_hyun" value={codeforcesId} onChange={(e) =>setCodeforcesId(e.target.value)} />
-                    </StyledLabel>
-                    <StyledLabel>
-                        Atcoder
-                        <StyledInputText type="text" placeholder="kyaryunha" value={atcoderId} onChange={(e) =>setAtcoderId(e.target.value)} />
-                    </StyledLabel>
-                </>
-            }
-            {
-                createMenuStore && createMenuStore.menu === CreateMenuEnum.ALGORITHM &&
-                <>
-                    <StyledQuestion>
-                        솔브드 티어를 표시할까요?
-                    </StyledQuestion>
-                    <StyledLabel>
-                        티어
+                        BOJ(solvedac) 티어
                         <StyledSelect>
-                            <option defaultChecked={true}>
-                                표시하지 않음
-                            </option>
+                            {
+                                SolvedAcTier.map((tier,idx) => {
+                                    return <option key={`solvedac-${tier}`} value={tier} defaultChecked={(idx===0)}>
+                                        {tier}
+                                    </option>
+                                })
+                            }
                         </StyledSelect>
                     </StyledLabel>
+
+                    <StyledLabel>
+                        Codeforces
+                        <StyledInputText type="text" placeholder="shin_hyun (없으면 공백)" value={codeforcesId} onChange={(e) =>setCodeforcesId(e.target.value)} />
+                    </StyledLabel>
+                    <StyledLabel>
+                        Codeforces 티어
+                        <StyledSelect>
+                            {
+                                CodeforcesTier.map((tier,idx) => {
+                                    return <option key={`solvedac-${tier}`} value={tier} defaultChecked={(idx===0)}>
+                                        {tier}
+                                    </option>
+                                })
+                            }
+                        </StyledSelect>
+                    </StyledLabel>
+
+                    <StyledLabel>
+                        Atcoder
+                        <StyledInputText type="text" placeholder="kyaryunha (없으면 공백)" value={atcoderId} onChange={(e) =>setAtcoderId(e.target.value)} />
+                    </StyledLabel>
+                    <StyledLabel>
+                        Atcoder 티어
+                        <StyledSelect>
+                            {
+                                AtcoderTier.map((tier,idx) => {
+                                    return <option key={`solvedac-${tier}`} value={tier} defaultChecked={(idx===0)}>
+                                        {tier}
+                                    </option>
+                                })
+                            }
+                        </StyledSelect>
+                    </StyledLabel>
+
                 </>
             }
             <StyledQuestion>
@@ -126,15 +154,15 @@ const Questions: NextPage = observer(() => {
             </StyledQuestion>
             <StyledLabel>
                 깃헙
-                <StyledInputText type="text" placeholder="kyaryunha" value={githubId} onChange={(e) =>setGithubId(e.target.value)} />
+                <StyledInputText type="text" placeholder="kyaryunha (없으면 공백)" value={githubId} onChange={(e) =>setGithubId(e.target.value)} />
             </StyledLabel>
             <StyledLabel>
                 웹사이트1
-                <StyledInputText type="text" placeholder="www.kyaryunha.com" value={url1} onChange={(e) =>setUrl1(e.target.value)} />
+                <StyledInputText type="text" placeholder="www.kyaryunha.com (없으면 공백)" value={url1} onChange={(e) =>setUrl1(e.target.value)} />
             </StyledLabel>
             <StyledLabel>
                 웹사이트2
-                <StyledInputText type="text" placeholder="twitter-friend.vercel.app" value={url2} onChange={(e) =>setUrl2(e.target.value)} />
+                <StyledInputText type="text" placeholder="twitter-friend.vercel.app (없으면 공백)" value={url2} onChange={(e) =>setUrl2(e.target.value)} />
             </StyledLabel>
             <StyledQuestion>
                 트윗 주요 콘텐츠
@@ -148,19 +176,13 @@ const Questions: NextPage = observer(() => {
                 })
             }
             <StyledQuestion>
-                그 외에도 주로 파는 분야가 있으면 적어주세요!
+                좋아하는 것을 적어주세요!
             </StyledQuestion>
             <StyledLabel>
-                <StyledTextarea placeholder="프론트엔드, 벡엔드" value={fields} onChange={(e) =>setFields(e.target.value)} />
+                <StyledTextarea placeholder="프론트엔드, 벡엔드" value={likes} onChange={(e) =>setLikes(e.target.value)} />
             </StyledLabel>
             <StyledQuestion>
-                간략히 소개글을 입력하고 싶으면 입력해주세요!
-            </StyledQuestion>
-            <StyledLabel>
-                <StyledTextarea placeholder="개발자는 멍멍하고 짖어요!" value={introduce} onChange={(e) =>setIntroduce(e.target.value)} />
-            </StyledLabel>
-            <StyledQuestion>
-                맞팔하는 경우
+                팔로하는 경우
             </StyledQuestion>
             {
                 followsTextArr.map((text, idx) => {
@@ -181,10 +203,16 @@ const Questions: NextPage = observer(() => {
                     </StyledCheckbox>
                 })
             }
+            <StyledQuestion>
+                소개글을 입력해주세요!
+            </StyledQuestion>
+            <StyledLabel>
+                <StyledTextarea placeholder="개발자는 멍멍하고 짖어요!" value={introduce} onChange={(e) =>setIntroduce(e.target.value)} />
+            </StyledLabel>
             <StyledButton onClick={handleClick}>
                 Create
             </StyledButton>
-        </>
+        </StyledQuestions>
     )
 });
-export default Questions;
+export default AlgorithmQuestions;

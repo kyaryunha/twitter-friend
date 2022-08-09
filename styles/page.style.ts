@@ -17,3 +17,8 @@ export const StyledTitle = styled.div`
   margin-bottom: 10px;
   border-bottom: 1px solid white;
 `;
+
+export const StyledSubTitle = styled.div`
+  font-size: 160%;
+  margin: 25px 0;
+`;
