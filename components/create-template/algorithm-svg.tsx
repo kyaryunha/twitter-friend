@@ -2,7 +2,7 @@ import {NextPage} from "next";
 import {useStores} from "../../stores";
 import {observer} from "mobx-react";
 import {StyledCreateSvg, StyledSvg} from "../../styles/create-template.style";
-import {IconGithub, IconTwitter, StyledSpan, StyledSvgText, StyledSvgTspan} from "../../styles/create-svg.style";
+import {IconGithub, IconTwitter, StyledSvgText, StyledSvgTspan} from "../../styles/create-svg.style";
 import {contentsTextArr, farewellsTextArr, followsTextArr} from "../../utils/questions.text";
 import {AtcoderTiers, CodeforcesTiers, SolvedAcTiers} from "../../utils/online-judge.constant";
 
@@ -43,7 +43,7 @@ const AlgorithmSvg: NextPage = observer(() => {
                     </StyledSvgText>
                     <line x1="800" y1="159" x2="800" y2="750" stroke={themeColor.main} strokeWidth={2}  />
                 </g>
-                <g transform="translate(70,60)">
+                <g transform="translate(70,70)">
                     <IconTwitter x={0} y={0} width={50} height={50}/>
                     <StyledSvgText x={70} y={40} fontSize={50}>
                         {algorithmQuestionsStore.twitterNickname ? algorithmQuestionsStore.twitterNickname : "닉네임"}
@@ -193,7 +193,7 @@ const AlgorithmSvg: NextPage = observer(() => {
                         &nbsp;좋아하는 것&nbsp;
                     </StyledSvgText>
                     {
-                        algorithmQuestionsStore.likes.map((text, idx) => {
+                        algorithmQuestionsStore.likes.split('\n').map((text, idx) => {
                             return <StyledSvgText y={50+(idx*35)} key={`svg-content-${text}`}>
                                 {text} &nbsp;
                             </StyledSvgText>
@@ -205,7 +205,7 @@ const AlgorithmSvg: NextPage = observer(() => {
                         &nbsp;싫어하는 것&nbsp;
                     </StyledSvgText>
                     {
-                        algorithmQuestionsStore.dislikes.map((text, idx) => {
+                        algorithmQuestionsStore.dislikes.split('\n').map((text, idx) => {
                             return <StyledSvgText y={50+(idx*35)} key={`svg-content-${text}`}>
                                 {text} &nbsp;
                             </StyledSvgText>
@@ -217,7 +217,7 @@ const AlgorithmSvg: NextPage = observer(() => {
                         &nbsp;소개글&nbsp;
                     </StyledSvgText>
                     {
-                        algorithmQuestionsStore.introduce.map((text, idx) => {
+                        algorithmQuestionsStore.introduce.split('\n').map((text, idx) => {
                             return <StyledSvgText y={50+(idx*35)} key={`svg-content-${text}`}>
                                 {text} &nbsp;
                             </StyledSvgText>
