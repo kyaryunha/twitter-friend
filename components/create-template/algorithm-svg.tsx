@@ -2,8 +2,9 @@ import {NextPage} from "next";
 import {useStores} from "../../stores";
 import {observer} from "mobx-react";
 import {StyledCreateSvg, StyledSvg} from "../../styles/create-template.style";
-import {IconGithub, IconTwitter, StyledSvgText, StyledSvgTspan} from "../../styles/create-svg.style";
-import {contentsTextArr, farewellsTextArr, followsTextArr} from "./questions.util";
+import {IconGithub, IconTwitter, StyledSpan, StyledSvgText, StyledSvgTspan} from "../../styles/create-svg.style";
+import {contentsTextArr, farewellsTextArr, followsTextArr} from "../../utils/questions.text";
+import {AtcoderTiers, CodeforcesTiers, SolvedAcTiers} from "../../utils/online-judge.constant";
 
 const AlgorithmSvg: NextPage = observer(() => {
     const {algorithmQuestionsStore} = useStores();
@@ -26,6 +27,13 @@ const AlgorithmSvg: NextPage = observer(() => {
                         <feFlood floodColor={"red"} />
                         <feComposite in="SourceGraphic" operator="xor"/>
                     </filter>
+                </defs>
+                <defs>
+                    <linearGradient id="master-filter" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" style={{stopColor:"rgb(124, 249, 255)", stopOpacity:1}} />
+                        <stop offset="50%" style={{stopColor:"rgb(180, 145, 255)", stopOpacity:1}} />
+                        <stop offset="100%" style={{stopColor:"rgb(255, 124, 168)",stopOpacity:1}} />
+                    </linearGradient>
                 </defs>
                 <g>
                     <rect x={0} y={0} width={1600} height={836} fill="white" />
@@ -66,25 +74,66 @@ const AlgorithmSvg: NextPage = observer(() => {
                 </g>
                 <g transform="translate(70,190)">
                     <StyledSvgText x={0} y={0} fontSize={30} fontWeight="bold" filter="url(#background-filter)">
-                        &nbsp;온라인 져지&nbsp;
+                        &nbsp;온라인 저지&nbsp;
                     </StyledSvgText>
                 </g>
                 <g transform="translate(70,220)">
-                    <StyledSvgText x={0} y={0}>
+                    {algorithmQuestionsStore.bojId && <image x={0} y={0} href="oj/boj.png" height="40" width="40"/>}
+                    {algorithmQuestionsStore.codeforcesId && <image x={0} y={(algorithmQuestionsStore.bojId?40:0)} href="oj/codeforces.png" height="38" width="38"/>}
+                    {algorithmQuestionsStore.atcoderId && <image x={0} y={(algorithmQuestionsStore.bojId?40:0)+(algorithmQuestionsStore.codeforcesId?40:0)} href="oj/atcoder.png" height="40" width="40"/>}
+                    <StyledSvgText x={0} y={-10}>
                         {
-                            algorithmQuestionsStore.bojId && <tspan x={0} dy={20}>
-                                BOJ: {algorithmQuestionsStore.bojId}
-                            </tspan>
+                            algorithmQuestionsStore.bojId && <StyledSvgTspan x={50} dy={40} fill={algorithmQuestionsStore.solvedacTier==1?"url(#master-filter)":SolvedAcTiers[algorithmQuestionsStore.solvedacTier][1]}>
+                                <StyledSvgTspan fontWeight="bold">
+                                    {algorithmQuestionsStore.bojId}
+                                </StyledSvgTspan>
+                                {
+                                    algorithmQuestionsStore.solvedacTier !== 0 && ` (${SolvedAcTiers[algorithmQuestionsStore.solvedacTier][0]})`
+                                }
+                            </StyledSvgTspan>
                         }
                         {
-                            algorithmQuestionsStore.codeforcesId && <tspan x={0} dy={35}>
-                                CodeForces: {algorithmQuestionsStore.codeforcesId}
-                            </tspan>
+                            algorithmQuestionsStore.codeforcesId && <StyledSvgTspan x={50} dy={40} fill={CodeforcesTiers[algorithmQuestionsStore.codeforcesTier][1]}>
+                                {
+                                    algorithmQuestionsStore.codeforcesTier === 1 ? <>
+                                        <StyledSvgTspan fill="black" fontWeight="bold">
+                                            {algorithmQuestionsStore.codeforcesId[0]}
+                                        </StyledSvgTspan>
+                                        <StyledSvgTspan fontWeight="bold">
+                                            {algorithmQuestionsStore.codeforcesId.slice(1)}
+                                        </StyledSvgTspan>
+                                    </>
+                                    :<StyledSvgTspan fontWeight="bold">
+                                            {algorithmQuestionsStore.codeforcesId}
+                                    </StyledSvgTspan>
+                                }
+                                {
+                                    algorithmQuestionsStore.codeforcesTier !== 0 && <>&nbsp;(
+                                            {
+                                                algorithmQuestionsStore.codeforcesTier === 1 ? <>
+                                                    <StyledSvgTspan fill="black">
+                                                        {CodeforcesTiers[algorithmQuestionsStore.codeforcesTier][0][0]}
+                                                    </StyledSvgTspan>
+                                                    <StyledSvgTspan>
+                                                        {CodeforcesTiers[algorithmQuestionsStore.codeforcesTier][0].slice(1)}
+                                                    </StyledSvgTspan>
+                                                </>
+                                                : CodeforcesTiers[algorithmQuestionsStore.codeforcesTier][0]
+                                            }
+                                            )
+                                        </>
+                                }
+                            </StyledSvgTspan>
                         }
                         {
-                            algorithmQuestionsStore.atcoderId && <tspan x={0} dy={35}>
-                                Atcoder: {algorithmQuestionsStore.atcoderId}
-                            </tspan>
+                            algorithmQuestionsStore.atcoderId && <StyledSvgTspan x={50} dy={40} fill={AtcoderTiers[algorithmQuestionsStore.atcoderTier][1]}>
+                                <StyledSvgTspan fontWeight="bold">
+                                    {algorithmQuestionsStore.atcoderId}
+                                </StyledSvgTspan>
+                                {
+                                    algorithmQuestionsStore.atcoderTier !== 0 && ` (${AtcoderTiers[algorithmQuestionsStore.atcoderTier][0]})`
+                                }
+                            </StyledSvgTspan>
                         }
                     </StyledSvgText>
                 </g>
@@ -151,7 +200,19 @@ const AlgorithmSvg: NextPage = observer(() => {
                         })
                     }
                 </g>
-                <g transform="translate(850,390)">
+                <g transform="translate(850,360)">
+                    <StyledSvgText x={0} y={0} fontSize={30} fontWeight="bold" filter="url(#background-filter)">
+                        &nbsp;싫어하는 것&nbsp;
+                    </StyledSvgText>
+                    {
+                        algorithmQuestionsStore.dislikes.map((text, idx) => {
+                            return <StyledSvgText y={50+(idx*35)} key={`svg-content-${text}`}>
+                                {text} &nbsp;
+                            </StyledSvgText>
+                        })
+                    }
+                </g>
+                <g transform="translate(850,530)">
                     <StyledSvgText x={0} y={0} fontSize={30} fontWeight="bold" filter="url(#background-filter)">
                         &nbsp;소개글&nbsp;
                     </StyledSvgText>

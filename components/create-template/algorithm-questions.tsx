@@ -2,7 +2,7 @@ import {
     StyledButton,
     StyledCheckbox,
     StyledInputText,
-    StyledLabel,
+    StyledLabel, StyledOption,
     StyledQuestion,
     StyledQuestions,
     StyledSelect,
@@ -11,9 +11,9 @@ import {
 import {observer} from "mobx-react";
 import {useStores} from "../../stores";
 import {FC, useState} from "react";
-import {contentsTextArr, farewellsTextArr, followsTextArr} from "./questions.util";
+import {contentsTextArr, farewellsTextArr, followsTextArr} from "../../utils/questions.text";
 import {MenuText} from "../../utils";
-import {AtcoderTier, CodeforcesTier, SolvedAcTier} from "../../utils/online-judge.constant";
+import {AtcoderTiers, CodeforcesTiers, SolvedAcTiers} from "../../utils/online-judge.constant";
 
 type QuestionsProps = {
     menu: string,
@@ -23,32 +23,39 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
     const [twitterNickname, setTwitterNickname] = useState("");
     const [twitterId, setTwitterId] = useState("");
     const [bojId, setBojId] = useState("");
+    const [solvedacTier, setSolvedacTier] = useState(0);
     const [codeforcesId, setCodeforcesId] = useState("");
+    const [codeforcesTier, setCodeforcesTier] = useState(0);
     const [atcoderId, setAtcoderId] = useState("");
-    const [solvedacTier, setSolvedacTier] = useState("");
+    const [atcoderTier, setAtcoderTier] = useState(0);
     const [githubId, setGithubId] = useState("");
     const [url1, setUrl1] = useState("");
     const [url2, setUrl2] = useState("");
     const [contents, setContents] = useState(Array(contentsTextArr.length).fill(false));
     const [likes, setLikes] = useState("");
+    const [dislikes, setDislikes] = useState("");
     const [introduce, setIntroduce] = useState("");
     const [follows, setFollows] = useState(Array(followsTextArr.length).fill(false));
     const [farewells, setFarewells] = useState(Array(farewellsTextArr.length).fill(false));
     const handleClick = () => {
         let likesArr = likes.split('\n');
+        let dislikesArr = dislikes.split('\n');
         let introduceArr = introduce.split('\n');
         algorithmQuestionsStore.update({
             twitterNickname,
             twitterId,
             bojId,
-            codeforcesId,
-            atcoderId,
             solvedacTier,
+            codeforcesId,
+            codeforcesTier,
+            atcoderId,
+            atcoderTier,
             githubId,
             url1,
             url2,
             contents,
             likes: likesArr,
+            dislikes: dislikesArr,
             introduce: introduceArr,
             follows,
             farewells,
@@ -77,6 +84,17 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
             });
         }
     };
+    const handleChange = (type:string, value:number) => {
+        if (type === "solvedacTier") {
+            setSolvedacTier(value);
+        }
+        else if (type === "codeforcesTier") {
+            setCodeforcesTier(value);
+        }
+        else if(type === "atcoderTier") {
+            setAtcoderTier(value);
+        }
+    };
     return (
         <StyledQuestions>
             <StyledQuestion>
@@ -94,7 +112,7 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
                 menu === MenuText.algorithm &&
                 <>
                     <StyledQuestion>
-                        온라인 져지 핸들을 입력해주세요! (BOJ / 코포 / 앳코더)
+                        온라인 저지 핸들을 입력해주세요! (BOJ / 코포 / 앳코더)
                     </StyledQuestion>
                     <StyledLabel>
                         BOJ
@@ -102,12 +120,12 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
                     </StyledLabel>
                     <StyledLabel>
                         BOJ(solvedac) 티어
-                        <StyledSelect>
+                        <StyledSelect onChange={(e) => handleChange("solvedacTier", parseInt(e.currentTarget.value))} value={solvedacTier} color={SolvedAcTiers[solvedacTier][1]}>
                             {
-                                SolvedAcTier.map((tier,idx) => {
-                                    return <option key={`solvedac-${tier}`} value={tier} defaultChecked={(idx===0)}>
-                                        {tier}
-                                    </option>
+                                SolvedAcTiers.map((tier,idx) => {
+                                    return <StyledOption key={`solvedac-${tier[0]}`} value={idx} color={tier[1]}>
+                                        {tier[0]}
+                                    </StyledOption>
                                 })
                             }
                         </StyledSelect>
@@ -119,12 +137,12 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
                     </StyledLabel>
                     <StyledLabel>
                         Codeforces 티어
-                        <StyledSelect>
+                        <StyledSelect onChange={(e) => handleChange("codeforcesTier", parseInt(e.currentTarget.value))} value={codeforcesTier} color={CodeforcesTiers[codeforcesTier][1]}>
                             {
-                                CodeforcesTier.map((tier,idx) => {
-                                    return <option key={`solvedac-${tier}`} value={tier} defaultChecked={(idx===0)}>
-                                        {tier}
-                                    </option>
+                                CodeforcesTiers.map((tier,idx) => {
+                                    return <StyledOption key={`solvedac-${tier[0]}`} value={idx} color={tier[1]}>
+                                        {tier[0]}
+                                    </StyledOption>
                                 })
                             }
                         </StyledSelect>
@@ -136,12 +154,12 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
                     </StyledLabel>
                     <StyledLabel>
                         Atcoder 티어
-                        <StyledSelect>
+                        <StyledSelect onChange={(e) => handleChange("atcoderTier", parseInt(e.currentTarget.value))} value={atcoderTier} color={AtcoderTiers[atcoderTier][1]}>
                             {
-                                AtcoderTier.map((tier,idx) => {
-                                    return <option key={`solvedac-${tier}`} value={tier} defaultChecked={(idx===0)}>
-                                        {tier}
-                                    </option>
+                                AtcoderTiers.map((tier,idx) => {
+                                    return <StyledOption key={`solvedac-${tier[0]}`} value={idx} color={tier[1]}>
+                                        {tier[0]}
+                                    </StyledOption>
                                 })
                             }
                         </StyledSelect>
@@ -180,6 +198,12 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
             </StyledQuestion>
             <StyledLabel>
                 <StyledTextarea placeholder="프론트엔드, 벡엔드" value={likes} onChange={(e) =>setLikes(e.target.value)} />
+            </StyledLabel>
+            <StyledQuestion>
+                싫어하는 것을 적어주세요!
+            </StyledQuestion>
+            <StyledLabel>
+                <StyledTextarea placeholder="프론트엔드, 벡엔드" value={dislikes} onChange={(e) =>setDislikes(e.target.value)} />
             </StyledLabel>
             <StyledQuestion>
                 팔로하는 경우
