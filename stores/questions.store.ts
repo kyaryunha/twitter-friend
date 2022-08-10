@@ -1,23 +1,13 @@
 import {action, makeObservable, observable} from "mobx";
 import {contentsTextArr, farewellsTextArr, followsTextArr} from "../utils/questions.text";
 
-export type QuestionsStoreProps = {
+export type QuestionsStoreTypes = {
     store: QuestionsStore,
 }
-// export type QuestionsStoreProps = {
-//     twitterId?: string,
-//     twitterNickname?: string,
-//     githubId?: string,
-//     url1?: string,
-//     url2?: string,
-//     contents?: boolean[],
-//     likes?: string[],
-//     dislikes?: string[],
-//     introduce?: string[],
-//     follows?: boolean[],
-//     farewells?: boolean[],
-// }
-//
+
+type QuestionsStoreProps = {
+    contentsLength?: number,
+}
 
 export class QuestionsStore {
     @observable twitterId:string = "";
@@ -88,7 +78,10 @@ export class QuestionsStore {
     }
 
 
-    constructor() {
+    constructor({contentsLength}: QuestionsStoreProps) {
+        if (contentsLength !== undefined) {
+            this.contents = Array(contentsLength).fill(false);
+        }
         makeObservable(this);
     }
 }

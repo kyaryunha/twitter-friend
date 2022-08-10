@@ -3,8 +3,8 @@ import type { AppProps } from 'next/app'
 import { Global, css } from '@emotion/react';
 import Footer from "../components/footer";
 import { StyledMainDiv } from '../styles/page.style';
-
-function MyApp({ Component, pageProps }: AppProps) {
+import {FC} from "react";
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     return <>
         <Global
             styles={css`

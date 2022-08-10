@@ -1,9 +1,9 @@
 import {observer} from "mobx-react";
 import {StyledInputText, StyledLabel, StyledQuestion} from "../../../styles/create-template.style";
 import {FC} from "react";
-import {QuestionsStoreProps} from "../../../stores/questions.store";
+import {QuestionsStoreTypes} from "../../../stores/questions.store";
 
-const QuestionGithubAndWebsites: FC<QuestionsStoreProps>  = observer(({store}) => {
+const QuestionGithubAndWebsites: FC<QuestionsStoreTypes>  = observer(({store}) => {
         return (
             <>
             <StyledQuestion>

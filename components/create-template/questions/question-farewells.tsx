@@ -1,9 +1,9 @@
 import {observer} from "mobx-react";
 import {StyledCheckbox, StyledQuestion} from "../../../styles/create-template.style";
 import {FC} from "react";
-import {QuestionsStoreProps} from "../../../stores/questions.store";
+import {QuestionsStoreTypes} from "../../../stores/questions.store";
 import {farewellsTextArr} from "../../../utils/questions.text";
-const QuestionTwitterNicknameAndId: FC<QuestionsStoreProps>  = observer(({store}) => {
+const QuestionTwitterNicknameAndId: FC<QuestionsStoreTypes>  = observer(({store}) => {
         return (
             <>
                 <StyledQuestion>

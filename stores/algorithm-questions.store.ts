@@ -2,17 +2,9 @@ import {action, makeObservable, observable} from "mobx";
 import {QuestionsStore} from "./questions.store";
 
 
-export type AlgorithmQuestionsStoreProps = {
+export type AlgorithmQuestionsStoreTypes = {
     store: AlgorithmQuestionsStore,
 }
-// export type AlgorithmQuestionsStoreProps = QuestionsStoreProps & {
-//     bojId?: string,
-//     solvedacTier?: number,
-//     codeforcesId?: string,
-//     codeforcesTier?: number,
-//     atcoderId?: string,
-//     atcoderTier?: number,
-// }
 
 export class AlgorithmQuestionsStore extends QuestionsStore {
     @observable bojId:string = "";
@@ -52,8 +44,8 @@ export class AlgorithmQuestionsStore extends QuestionsStore {
         this.atcoderTier = atcoderTier;
     }
 
-    constructor() {
-        super();
+    constructor(p: { contentsLength: number }) {
+        super({});
         makeObservable(this);
     }
 }

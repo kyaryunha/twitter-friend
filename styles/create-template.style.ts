@@ -12,7 +12,7 @@ export const StyledQuestions = styled.div`
     width: ${BREAKPOINTS[0]};
   }
 `;
-export const StyledCreateSvg = styled.div`
+export const StyledSvgBoard = styled.div`
   ${MediaQuery[1]} { 
     width: 100%;
   }
