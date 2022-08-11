@@ -14,7 +14,7 @@ const QuestionTwitterNicknameAndId: FC<QuestionsStoreTypes>  = observer(({store}
                 </StyledLabel>
                 <StyledLabel>
                     트위터 ID
-                    <StyledInputText type="text" placeholder="까룬" value={store.twitterId} onChange={(e) =>(store.updateTwitterId(e.target.value))} />
+                    <StyledInputText type="text" placeholder="shinhyun_main" value={store.twitterId} onChange={(e) =>(store.updateTwitterId(e.target.value))} />
                 </StyledLabel>
             </>
         )
