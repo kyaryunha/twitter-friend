@@ -15,14 +15,19 @@ export const StyledQuestions = styled.div`
     width:  ${`${BREAKPOINTS[1]}px`};
   }
 `;
-export const StyledSvgBoard = styled.div`
+export const StyledCanvasBoard = styled.div`
   ${MediaQuery[1]} {
     width: 100%;
   }
 `;
 
-export const StyledSvg = styled.svg`
+export const StyledCanvas = styled.canvas`
+  display: block;
   user-select: none;
+  background: wheat;
+  width: 100%;
+  //width: 400px;
+  //height: 209px;
 `;
 export const StyledQuestion = styled.div`
   margin: 30px 0;
@@ -87,6 +92,7 @@ export const StyledButton = styled.button`
   display: block;
   color: white;
   background-color: rgb(29, 155, 240);
+  border: 0;
   border-radius: 10px;
   padding: 10px;
   font-size: 120%;
