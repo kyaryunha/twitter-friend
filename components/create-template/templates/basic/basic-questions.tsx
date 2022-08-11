@@ -12,7 +12,8 @@ import QuestionDislikes from "../../questions/question-dislikes";
 import QuestionFollows from "../../questions/question-follows";
 import QuestionFarewells from "../../questions/question-farewells";
 import QuestionIntroduce from "../../questions/question-introduce";
-import {algorithmContentsTextArr, contentsTextArr} from "../../../../utils/questions.text";
+import {contentsTextArr} from "../../../../utils/questions.text";
+import { StyledSubTitle } from "../../../../styles/page.style";
 type QuestionsProps = {
     menu: string,
 }
@@ -20,6 +21,9 @@ const BasicQuestions: FC<QuestionsProps> = observer(({menu}) => {
     const {basicQuestionsStore}=useStores();
     return (
         <StyledQuestions>
+            <StyledSubTitle>
+                {menu} 트친소 짤 생성기
+            </StyledSubTitle>
             <QuestionTwitterNicknameAndId store={basicQuestionsStore}/>
             <QuestionGithubAndWebsites store={basicQuestionsStore} />
             <QuestionContents store={basicQuestionsStore} textArr={contentsTextArr} />
