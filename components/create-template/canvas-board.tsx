@@ -8,8 +8,10 @@ import {useStores} from "../../stores";
 export const CanvasBoard: NextPage = observer(({ canvas }) => {
     const {themeColorStore} = useStores();
     const handleClick = async () => {
-        // const canvasData = document.getElementById("target-canvas");
-        // TODO
+        var link = document.createElement('a');
+        link.download = 'twitter-friend.png';
+        link.href = document.getElementsByTagName('canvas')[0].toDataURL()
+        link.click();
     };
     return <>
         <StyledCanvasBoard>
