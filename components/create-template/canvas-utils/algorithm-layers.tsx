@@ -23,7 +23,16 @@ export const drawAlgorithmOJ = ({ctx, x, y, color, bojId, solvedacTier, codeforc
     if (bojId) {
         drawImage(ctx, "oj/boj.png", nx, ny-30, 40, 40);
         ctx.fontWeight = "bold";
-        ctx.fillStyle = SolvedAcTiers[solvedacTier][1];
+        if (solvedacTier===1) {
+            let gradient = ctx.createLinearGradient(nx,ny+15,nx, ny-30);
+            gradient.addColorStop(0,"#ff7ca8");
+            gradient.addColorStop(0.5, "#b491ff");
+            gradient.addColorStop(1,"#7cf9ff");
+            ctx.fillStyle = gradient;
+        }
+        else {
+            ctx.fillStyle = SolvedAcTiers[solvedacTier][1];
+        }
         drawNormalText(ctx, bojId, nx+50, ny);
         if (solvedacTier !== 0) {
             let len = ctx.measureText(bojId).width;
