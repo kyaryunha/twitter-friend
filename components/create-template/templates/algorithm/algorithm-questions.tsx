@@ -14,6 +14,7 @@ import QuestionFollows from "../../questions/question-follows";
 import QuestionFarewells from "../../questions/question-farewells";
 import QuestionIntroduce from "../../questions/question-introduce";
 import {algorithmContentsTextArr} from "../../../../utils/questions.text";
+import {StyledSubTitle} from "../../../../styles/page.style";
 type QuestionsProps = {
     menu: string,
 }
@@ -21,6 +22,10 @@ const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
     const {algorithmQuestionsStore}=useStores();
     return (
         <StyledQuestions>
+            <StyledSubTitle>
+                {menu} 트친소 짤 생성기
+            </StyledSubTitle>
+            정보들을 입력해주세요!
             <QuestionTwitterNicknameAndId store={algorithmQuestionsStore}/>
             <QuestionOnlineJudge store={algorithmQuestionsStore} />
             <QuestionGithubAndWebsites store={algorithmQuestionsStore} />

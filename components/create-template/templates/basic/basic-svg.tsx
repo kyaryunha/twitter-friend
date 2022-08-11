@@ -11,13 +11,12 @@ import {
     SvgGithubAndUrls, SvgIntroduce, SvgLikes,
     SvgTwitter
 } from "../../svg-utils/frames";
-import {SvgAlgorithmOJ} from "../../svg-utils/algorithm-frames";
 import {contentsTextArr} from "../../../../utils/questions.text";
 
 const BasicSvg: NextPage = observer(() => {
     const {basicQuestionsStore:questionStore, themeColorStore} = useStores();
     return (
-        <StyledSvg viewBox="0 0 1600 836" width="100%">
+        <StyledSvg viewBox="0 0 1600 836" width="100%" id="target-svg">
             <BackgroundFilter color={themeColorStore.main} />
             <OkFilter />
             <MasterFilter />

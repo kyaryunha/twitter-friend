@@ -17,7 +17,7 @@ import {algorithmContentsTextArr} from "../../../../utils/questions.text";
 const AlgorithmSvg: NextPage = observer(() => {
     const {algorithmQuestionsStore:questionStore, themeColorStore} = useStores();
     return (
-        <StyledSvg viewBox="0 0 1600 836" width="100%">
+        <StyledSvg viewBox="0 0 1600 836" width="100%" id="target-svg">
             <BackgroundFilter color={themeColorStore.main} />
             <OkFilter />
             <MasterFilter />

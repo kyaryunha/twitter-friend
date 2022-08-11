@@ -9,11 +9,14 @@ export const StyledCreateTemplate = styled.div`
 `;
 export const StyledQuestions = styled.div`
   ${MediaQuery[1]} { 
-    width: ${BREAKPOINTS[0]};
+    width: ${`${BREAKPOINTS[0]}px`};
+  }
+  ${MediaQuery[2]} {
+    width:  ${`${BREAKPOINTS[1]}px`};
   }
 `;
 export const StyledSvgBoard = styled.div`
-  ${MediaQuery[1]} { 
+  ${MediaQuery[1]} {
     width: 100%;
   }
 `;
