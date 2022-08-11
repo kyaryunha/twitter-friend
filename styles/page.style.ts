@@ -22,3 +22,16 @@ export const StyledSubTitle = styled.div`
   font-size: 160%;
   margin: 25px 0;
 `;
+
+type StyledDivProps = {
+  margin?: string | number,
+}
+export const StyledDiv = styled.div<StyledDivProps>`
+  ${(props) => `${(props.margin && `margin: ${props.margin}`)}`};
+`;
+
+export const StyledFooter = styled.div`
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid white;
+`;

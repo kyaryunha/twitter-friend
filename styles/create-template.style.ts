@@ -12,7 +12,7 @@ export const StyledQuestions = styled.div`
     width: ${BREAKPOINTS[0]};
   }
 `;
-export const StyledCreateSvg = styled.div`
+export const StyledSvgBoard = styled.div`
   ${MediaQuery[1]} { 
     width: 100%;
   }
@@ -44,9 +44,14 @@ export const StyledInputText = styled.input`
 export const StyledSelect = styled.select`
   margin-left: 8px;
   padding: 2px 5px;
+  font-weight: bold;
+  ${(props) => `${(props.color && `color: ${props.color}`)}`};
   &:focus {
     outline: none;
   }
+`;
+export const StyledOption = styled.option`
+  ${(props) => `${(props.color && `color: ${props.color}`)}`};
 `;
 export const StyledTextarea = styled.textarea`
   width: 100%;

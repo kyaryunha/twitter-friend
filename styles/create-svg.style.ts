@@ -26,6 +26,10 @@ export const IconGithub = styled(Github)`
   height: 10px;
   color: black;
 `;
-export const IconTwitter = styled(Twitter)`
-  color: rgb(29, 155, 240);
+
+type IconTwitterProps = {
+    color?: string,
+}
+export const IconTwitter = styled(Twitter)<IconTwitterProps>`
+  color: ${(props) => `${(props.color ? props.color : "#1D9BF0")}`};
 `;
