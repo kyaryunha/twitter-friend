@@ -9,14 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion-icons/fa-brands": "^3.19.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@types/react-gtm-module": "^2.0.1",
     "mobx": "^6.6.1",
     "mobx-react": "^7.5.2",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-gtm-module": "^2.0.11"
   },
   "devDependencies": {
     "@types/node": "18.6.4",

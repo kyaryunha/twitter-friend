@@ -16,6 +16,10 @@ export const StyledTitle = styled.div`
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid white;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 export const StyledSubTitle = styled.div`
