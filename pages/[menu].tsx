@@ -17,11 +17,6 @@ const Menu: NextPage = () => {
     }, [menu]);
     return (
         <>
-            <StyledTitle>
-                <Link href="/">
-                    <a>트친소 짤 생성기</a>
-                </Link>
-            </StyledTitle>
             {
                 // @ts-ignore
                 typeof menu === "string" && <CreateTemplate menu={MenuText[menu]} />
