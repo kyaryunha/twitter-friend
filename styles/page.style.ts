@@ -12,6 +12,8 @@ export const StyledMainDiv = styled.div`
 `;
 
 export const StyledTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
   font-size: 200%;
   padding-bottom: 10px;
   margin-bottom: 10px;
@@ -19,6 +21,9 @@ export const StyledTitle = styled.div`
   a {
     color: inherit;
     text-decoration: none;
+  }
+  img {
+    height: 40px;
   }
 `;
 
