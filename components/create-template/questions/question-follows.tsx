@@ -12,7 +12,12 @@ const QuestionTwitterNicknameAndId: FC<QuestionsStoreTypes>  = observer(({store}
                 {
                     followsTextArr.map((text, idx) => {
                         return <StyledCheckbox key={`checkbox-follows-${idx}`}>
-                            <input type="checkbox" id={`follows-${idx}`} onChange={(e) => store.updateFollow(idx, e.target.checked)}/>
+                            <input
+                                type="checkbox"
+                                id={`follows-${idx}`}
+                                onChange={(e) => store.updateFollow(idx, e.target.checked)}
+                                checked={store.follows[idx]}
+                            />
                             <label htmlFor={`follows-${idx}`}>{text}</label>
                         </StyledCheckbox>
                     })
