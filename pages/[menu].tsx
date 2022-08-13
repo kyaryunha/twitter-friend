@@ -11,7 +11,6 @@ const Menu: NextPage = () => {
     const {menu} = router.query;
 
     useEffect(() => {
-        console.log(menu);
         if (typeof menu === "string" && !MenuUrl.includes(menu)) {
             router.push('/404');
         }

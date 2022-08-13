@@ -13,10 +13,10 @@ import {
     drawLikes,
     drawTwitter,
 } from "../../canvas-utils/layers";
-import {algorithmContentsTextArr} from "../../../../utils/questions.text";
+import {contentsTextArr} from "../../../../utils/questions.text";
 import {useEffect, useRef} from "react";
 
-const AlgorithmCanvas: NextPage = observer(() => {
+const BasicCanvas: NextPage = observer(() => {
     const {basicQuestionsStore:questionStore, themeColorStore} = useStores();
     const canvasRef = useRef(null);
     useEffect(() => {
@@ -51,7 +51,7 @@ const AlgorithmCanvas: NextPage = observer(() => {
                 color: themeColorStore.main,
                 colorNo: themeColorStore.no,
                 contents: questionStore.contents,
-                textArr: algorithmContentsTextArr,
+                textArr: contentsTextArr,
             });
             drawFollows({
                 ctx,
@@ -112,4 +112,4 @@ const AlgorithmCanvas: NextPage = observer(() => {
     )
 });
 
-export default AlgorithmCanvas;
+export default BasicCanvas;
