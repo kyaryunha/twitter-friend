@@ -1,10 +1,31 @@
-import '../styles/globals.css'
+import * as gtag from "../utils/gtag";
 import type { AppProps } from 'next/app'
 import { Global, css } from '@emotion/react';
 import Footer from "../components/footer";
 import { StyledMainDiv } from '../styles/page.style';
-import {FC} from "react";
+import {FC, useEffect} from "react";
+import TagManager from "react-gtm-module";
+import {useRouter} from "next/router";
+
+
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+    const router = useRouter();
+    useEffect(() => {
+        if (process.env.NODE_ENV === "production") {
+            const handleRouteChange = (url:any) => {
+                gtag.pageview(url);
+            };
+            router.events.on('routeChangeComplete', handleRouteChange);
+            return () => {
+                router.events.off('routeChangeComplete', handleRouteChange);
+            };
+        }
+    }, [router.events]);
+    useEffect(() => {
+        if (process.env.NODE_ENV === "production") {
+            TagManager.initialize({ gtmId: 'GTM-M78S5P5' });
+        }
+    }, []);
     return <>
         <Global
             styles={css`
@@ -37,4 +58,4 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     </>
 }
 
-export default MyApp
+export default MyApp;

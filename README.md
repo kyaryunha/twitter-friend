@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Twitter Friend
 
-## Getting Started
+#### Introduce
 
-First, run the development server:
+트친소란 트위터에서 SNS 친구를 구할 때, 스스로를 소개하는 것이다.
 
+사진 형태의 자기소개서와 올리는 경우가 많으며, 계정의 주제에 맞는 자기소개서 형식의 이미지를 다운 받아 직접 작성하는 방식이 널리 쓰인다. 
+
+이미지를 편집하는 것은 그림판을 쓰기엔 불편하고 다른 프로그램을 쓰기엔 이미지 편집에 익숙하지 않은 사람들이 많다.
+
+이에 입력을 통해 쉽게 트친소 이미지를 생성해 다운받을 수 있는 사이트를 만들었다. 
+
+#### Website URL
+https://twitter-friend.vercel.app/
+
+#### Templates
+
+계정의 주제에 따라 트친소 이미지의 형식도 달라진다.
+이에 여러 주제에 맞는 템플릿을 만들고 있다.
+
+템플릿마다 아래와 같은 정보를 적을 수 있다.
+- 트친소(기본) 
+  - 트위터 닉네임, 트위터 ID, 깃헙, 웹사이트1, 웹사이트2, 트윗 주요 콘텐츠, 좋아하는 것, 싫어하는 것, 소개글 
+- 알고리즘 트친소
+  - 트친소(기본) + 온라인 저지(백준, 코드포스, 앳코더)
+- 프론트엔드 트친소 (제작 예정)
+  - 트친소(기본) + 기술 스택 (변경 및 추가 가능성 있음)
+
+#### How to run 
 ```bash
-npm run dev
-# or
+# install 
+yarn install
+# development run 
 yarn dev
+# production run
+yarn run build
+yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Authors
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Development: twitter @ shinhyun_main
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Idea: twitter @ horse_sensei
