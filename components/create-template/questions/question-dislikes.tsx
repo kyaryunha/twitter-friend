@@ -9,7 +9,7 @@ const QuestionTwitterNicknameAndId: FC<QuestionsStoreTypes>  = observer(({store}
                     싫어하는 것을 적어주세요!
                 </StyledQuestion>
                 <StyledLabel>
-                    <StyledTextarea placeholder="프론트엔드, 벡엔드" value={store.dislikes} onChange={(e) =>store.updateDislikes(e.target.value)} />
+                    <StyledTextarea placeholder="프론트엔드, 벡엔드 (길어지면 엔터를 눌러주세요)" value={store.dislikes} onChange={(e) =>store.updateDislikes(e.target.value)} />
                 </StyledLabel>
             </>
         )
