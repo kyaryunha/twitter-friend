@@ -3,6 +3,7 @@ import {StyledButton, StyledCanvasBoard} from "../../styles/create-template.styl
 import {NextPage} from "next";
 import {StyledDiv, StyledSubTitle } from "../../styles/page.style";
 import {useStores} from "../../stores";
+import {event} from "../../utils/gtag";
 
 // @ts-ignore
 export const CanvasBoard: NextPage = observer(({ canvas }) => {
@@ -12,6 +13,13 @@ export const CanvasBoard: NextPage = observer(({ canvas }) => {
         link.download = 'twitter-friend.png';
         link.href = document.getElementsByTagName('canvas')[0].toDataURL()
         link.click();
+		
+		event({
+			action: "다운로드 버튼 클릭",
+			category: "Event",
+			label: "트친소 이미지 다운로드",
+			value: "",
+		})
     };
     return <>
         <StyledCanvasBoard>
