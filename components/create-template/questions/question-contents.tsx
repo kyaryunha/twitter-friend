@@ -14,7 +14,12 @@ const QuestionGithubAndWebsites: FC<QuestionGithubAndWebsitesProps>  = observer(
                 {
                     textArr.map((text, idx) => {
                         return <StyledCheckbox key={`checkbox-contents-${idx}`}>
-                            <input type="checkbox" id={`contents-${idx}`} onChange={(e) => store.updateContent(idx, e.target.checked)}/>
+                            <input
+                                type="checkbox"
+                                id={`contents-${idx}`}
+                                onChange={(e) => store.updateContent(idx, e.target.checked)}
+                                checked={store.contents[idx]}
+                            />
                             <label htmlFor={`contents-${idx}`}>{text}</label>
                         </StyledCheckbox>
                     })

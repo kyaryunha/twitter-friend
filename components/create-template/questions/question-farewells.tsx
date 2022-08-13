@@ -12,7 +12,12 @@ const QuestionTwitterNicknameAndId: FC<QuestionsStoreTypes>  = observer(({store}
                 {
                     farewellsTextArr.map((text, idx) => {
                         return <StyledCheckbox key={`checkbox-farewells-${idx}`}>
-                            <input type="checkbox" id={`farewells-${idx}`} onChange={(e) => store.updateFarewell(idx, e.target.checked)}/>
+                            <input
+                                type="checkbox"
+                                id={`farewells-${idx}`}
+                                onChange={(e) => store.updateFarewell(idx, e.target.checked)}
+                                checked={store.farewells[idx]}
+                            />
                             <label htmlFor={`farewells-${idx}`}>{text}</label>
                         </StyledCheckbox>
                     })
