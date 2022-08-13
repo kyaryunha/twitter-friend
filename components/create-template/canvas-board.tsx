@@ -28,12 +28,20 @@ export const CanvasBoard: FC<CanvasBoardProps> = observer(({ canvas, menu }:Canv
         }
     };
     const handleClickTwitter = async () => {
-        const url_default_tw_txt = `https://twitter.com/intent/tweet?text=%23${menu}_트친소`;
+        const url_default_tw_txt = `https://twitter.com/intent/tweet?text=%23${menu}_트친소 `;
         const url_default_tw_url = "&url=";
         const url_this_page = encodeURIComponent(location.href);
         const title_this_page = encodeURIComponent(document.title);
         const url_combine_tw = url_default_tw_txt + title_this_page + url_default_tw_url + url_this_page;
         window.open(url_combine_tw, '', 'scrollbars=no, width=600, height=600');
+        if (process.env.NODE_ENV === "production") {
+            event({
+                action: "공유 버튼 클릭",
+                category: "Event",
+                label: `${menu} 트친소 공유`,
+                value: "",
+            });
+        }
     }
     return <>
         <StyledCanvasBoard>
