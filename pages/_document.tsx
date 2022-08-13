@@ -8,8 +8,6 @@ export default class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <title>트친소 짤 생성기</title>
-                    <meta name="description" content="트친소 짤 생성기" />
                     {
                         process.env.NODE_ENV === "production" &&
                         <>

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import * as gtag from "../utils/gtag";
 import type { AppProps } from 'next/app'
 import { Global, css } from '@emotion/react';
@@ -52,6 +53,10 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
               }
             `}
         />
+        <Head>
+            <title>트친소 짤 생성기</title>
+            <meta name="description" content="트친소 짤 생성기" />
+        </Head>
         <StyledMainDiv>
             <StyledTitle>
                 <Link href="/">
