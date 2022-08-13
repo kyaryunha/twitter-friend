@@ -89,17 +89,17 @@ export const StyledCheckbox = styled.div`
   }
 `;
 export const StyledButton = styled.button`
-  display: block;
   color: white;
   background-color: rgb(29, 155, 240);
   border: 0;
   border-radius: 10px;
   padding: 10px;
   font-size: 120%;
-  margin: 30px 0;
+  margin: 30px 20px 30px 0;
+
   &:hover {
     cursor: pointer;
     background-color: rgb(29, 155, 240, 0.9);
-    transition:  background-color 0.2s;
+    transition: background-color 0.2s;
   }
 `;
