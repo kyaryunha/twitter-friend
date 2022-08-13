@@ -1,5 +1,6 @@
 import {action, makeObservable, observable} from "mobx";
 import {QuestionsStore} from "./questions.store";
+import {algorithmContentsTextArr} from "../utils/questions.text";
 
 
 export type AlgorithmQuestionsStoreTypes = {
@@ -44,8 +45,10 @@ export class AlgorithmQuestionsStore extends QuestionsStore {
         this.atcoderTier = atcoderTier;
     }
 
-    constructor(p: { contentsLength: number }) {
-        super({});
+    constructor() {
+        super({
+            contentsLength: algorithmContentsTextArr.length,
+        });
         makeObservable(this);
     }
 }
