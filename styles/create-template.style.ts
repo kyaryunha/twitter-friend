@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {BREAKPOINTS, MediaQuery} from "./media-query";
+import exp from "constants";
 
 export const StyledCreateTemplate = styled.div`
   display: block;
@@ -10,6 +11,7 @@ export const StyledCreateTemplate = styled.div`
 export const StyledQuestions = styled.div`
   ${MediaQuery[1]} { 
     width: ${`${BREAKPOINTS[0]}px`};
+    margin-right: 20px;
   }
   ${MediaQuery[2]} {
     width:  ${`${BREAKPOINTS[1]}px`};
@@ -34,9 +36,46 @@ export const StyledQuestion = styled.div`
   font-size: 120%;
 `;
 
+export const StyledStacksUl = styled.ul`
+  margin: 30px 0;
+  border-radius: 16px;
+  border: 1px solid rgb(56, 68, 77);
+  background-color: rgb(30, 39, 50);
+  padding: 5px;
+`;
+export const StyledStacksli = styled.li`
+  display: inline-flex;
+  height: 36px;
+  border-radius: 5px;
+  margin: 3px 0 3px 3px;
+  padding:8px;
+  border: 1px solid rgb(56, 68, 77);
+  img {
+    height: 16px;
+    border-radius: 3px;
+  }
+  span {
+    margin-left: 3px;
+    vertical-align: middle;
+  }
+  button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    background-color: transparent;
+    border-radius: 5px;
+  }
+`;
+
+
+
 export const StyledLabel = styled.label`
   display: block;
-  margin: 10px 20px;
+  margin: 10px 0 10px 20px;
 `;
 
 export const StyledInputText = styled.input`
@@ -74,7 +113,6 @@ export const StyledCheckbox = styled.div`
     display: inline-block;
     width: 25px;
     height: 25px;
-    margin-right: 10px;
     cursor: pointer;
     accent-color: rgb(29, 155, 240, 0.9);
     clip-path: circle(45% at 50% 50%);
@@ -84,7 +122,8 @@ export const StyledCheckbox = styled.div`
   }
   label {
     margin-top: 2px;
-    margin-right: 15px;
+    padding-left: 5px;
+    margin-right: 10px;
     height: 30px;
   }
 `;

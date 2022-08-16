@@ -18,20 +18,20 @@ type QuestionsProps = {
     menu: string,
 }
 const BasicQuestions: FC<QuestionsProps> = observer(({menu}) => {
-    const {basicQuestionsStore}=useStores();
+    const {basicQuestionsStore:questionsStore}=useStores();
     return (
         <StyledQuestions>
             <StyledSubTitle>
                 {menu} 트친소 짤 생성기
             </StyledSubTitle>
-            <QuestionTwitterNicknameAndId store={basicQuestionsStore}/>
-            <QuestionGithubAndWebsites store={basicQuestionsStore} />
-            <QuestionContents store={basicQuestionsStore} textArr={contentsTextArr} />
-            <QuestionLikes store={basicQuestionsStore} />
-            <QuestionDislikes store={basicQuestionsStore} />
-            <QuestionFollows store={basicQuestionsStore} />
-            <QuestionFarewells store={basicQuestionsStore} />
-            <QuestionIntroduce store={basicQuestionsStore} />
+            <QuestionTwitterNicknameAndId store={questionsStore}/>
+            <QuestionGithubAndWebsites store={questionsStore} />
+            <QuestionContents store={questionsStore} textArr={contentsTextArr} />
+            <QuestionLikes store={questionsStore} />
+            <QuestionDislikes store={questionsStore} />
+            <QuestionFollows store={questionsStore} />
+            <QuestionFarewells store={questionsStore} />
+            <QuestionIntroduce store={questionsStore} />
         </StyledQuestions>
     )
 });
