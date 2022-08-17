@@ -26,14 +26,17 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
     }
 
     const [dragStartIdx, setDragStartIdx] = useState<number>(-1);
-    const onDragStart = (e: any, selectedIdx: number) => {
+    const onStackDragStart = (e: any, selectedIdx: number) => {
         setDragStartIdx(selectedIdx);
     };
-    const onDragOver = (e: any, selectedIdx: number) => {
+    const onStackDragOver = (e: any) => {
         e.preventDefault();
     };
-    const onDrop = (e: any, selectedIdx: number) => {
-        store.updateDrag(dragStartIdx, selectedIdx);
+    const onStackDrop = (e: any, selectedIdx: number) => {
+        store.updateByIdx(dragStartIdx, selectedIdx);
+    };
+    const onStackClick = (selectedIdx: number) => {
+        store.updateByIdx(selectedIdx);
     };
 
     return (
@@ -42,8 +45,8 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
                 프론트엔드 기술스택을 선택해주세요!
             </StyledQuestion>
             <StyledLabel>
-                검색 혹은 클릭을 통해 선택할 수 있어요 <br />
-                선택한 순서대로 표시되며, 드래그로 순서를 변경할 수 있어요 <br />
+                검색 혹은 클릭을 통해 선택할 수 있어요. <br />
+                선택한 순서대로 표시되며, 드래그로 순서를 변경할 수 있고, 클릭하면 삭제됩니다. <br />
                 <StyledInputText
                     margin="10px 0 0 0;"
                     type="text"
@@ -87,21 +90,24 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
             </StyledLabel>
             <StyledStacksUl>
                 {
-                    store.selectedFrontendStacks.length === 0 && <>
+                    store.selectedFrontendStacks.length === 0 ? <>
                         현재 선택된게 없음
                     </>
-                }
-                {
-                    store.selectedFrontendStacks.map((selectedIdx, idx) => {
-                        return <StyledStacksli
-                            key={`frontend-stacks-${idx}-${selectedIdx}`}
-                            onDragStart={(e) => onDragStart(e, selectedIdx)}
-                            onDragOver={(e) => onDragOver(e, selectedIdx)}
-                            onDrop={(e)=>onDrop(e, selectedIdx)}
-                        >
-                            <img src={`${StacksFolder}${StacksFilename[FrontendStacks[selectedIdx]]}`} alt={FrontendStacks[selectedIdx]}/>
-                        </StyledStacksli>
-                    })
+                    : store.selectedFrontendStacks.map((selectedIdx, idx) => {
+                            return <StyledStacksli
+                                key={`frontend-stacks-${idx}-${selectedIdx}`}
+                                onClick={()=>onStackClick(selectedIdx)}
+                                onDragStart={(e) => onStackDragStart(e, selectedIdx)}
+                                onDragOver={(e) => onStackDragOver(e)}
+                                onDrop={(e)=>onStackDrop(e, selectedIdx)}
+                            >
+                                <img
+                                    src={`${StacksFolder}${StacksFilename[FrontendStacks[selectedIdx]]}`}
+                                    alt={FrontendStacks[selectedIdx]}
+                                    title={FrontendStacks[selectedIdx]}
+                                />
+                            </StyledStacksli>
+                        })
                 }
             </StyledStacksUl>
             <StyledStacksImg>
@@ -113,6 +119,7 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
                             alt={FrontendStacks[idx]}
                             onClick={() => store.updateFrontendStacks(idx)}
                             checked={store.frontendStacks[idx] > 0}
+                            title={FrontendStacks[idx]}
                         />
                     })
                 }

@@ -44,12 +44,14 @@ export const StyledStacksUl = styled.ul`
   border: 1px solid rgb(56, 68, 77);
   background-color: rgb(30, 39, 50);
   padding: 5px;
+  user-select: none;
 `;
 export const StyledStacksli = styled.li`
   display: inline-flex;
   cursor:pointer;
-  img {
+  img, svg {
     background-color: white;
+    color: black;
     width: 30px;
     height: 30px;
     border-radius: 3px;

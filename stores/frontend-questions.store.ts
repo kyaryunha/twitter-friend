@@ -28,11 +28,20 @@ export class FrontendQuestionsStore extends QuestionsStore {
     }
 
     @action
-    public updateDrag = (pastIdx:number, newIdx:number) => {
-        console.log(pastIdx, newIdx);
+    public updateByIdx = (pastIdx:number, newIdx?:number) => {
         const pastOrder = this.frontendStacks[pastIdx];
-        this.frontendStacks[pastIdx] = this.frontendStacks[newIdx];
-        this.frontendStacks[newIdx] = pastOrder
+        if (newIdx===undefined) {
+            this.frontendStacks[pastIdx] = 0;
+            for (let i = 0; i < FrontendStacks.length; i++) {
+                if (this.frontendStacks[i] > pastOrder) {
+                    this.frontendStacks[i] -= 1;
+                }
+            }
+        }
+        else {
+            this.frontendStacks[pastIdx] = this.frontendStacks[newIdx];
+            this.frontendStacks[newIdx] = pastOrder;
+        }
     }
 
     @action
