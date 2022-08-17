@@ -27,15 +27,12 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
 
     const [dragStartIdx, setDragStartIdx] = useState<number>(-1);
     const onDragStart = (e: any, selectedIdx: number) => {
-        console.log("onDragStart")
         setDragStartIdx(selectedIdx);
     };
     const onDragOver = (e: any, selectedIdx: number) => {
         e.preventDefault();
-        console.log("onDragOver");
     };
     const onDrop = (e: any, selectedIdx: number) => {
-        console.log("onDrop")
         store.updateDrag(dragStartIdx, selectedIdx);
     };
 
@@ -120,29 +117,6 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
                     })
                 }
             </StyledStacksImg>
-            {/*<StyledStacksUl>*/}
-            {/*    {*/}
-            {/*        store.selectedFrontendStacks.length === 0 && <>*/}
-            {/*        현재 선택된게 없음*/}
-            {/*        </>*/}
-            {/*    }*/}
-            {/*    {*/}
-            {/*        store.selectedFrontendStacks.map((selectedIdx, idx) => {*/}
-            {/*            return <StyledStacksli key={`frontend-stacks-${idx}-${selectedIdx}`}>*/}
-            {/*                {*/}
-            {/*                    idx !== 0 && <button onClick={() => store.updateOrder(selectedIdx)}>*/}
-            {/*                        ↔*/}
-            {/*                    </button>*/}
-            {/*                }*/}
-            {/*                <img src={`${StacksFolder}${StacksFilename[FrontendStacks[selectedIdx]]}`} alt={FrontendStacks[selectedIdx]}/>*/}
-            {/*                <span>{FrontendStacks[selectedIdx]}</span>*/}
-            {/*                <button onClick={() => store.updateFrontendStacks(selectedIdx, false)}>*/}
-            {/*                    x*/}
-            {/*                </button>*/}
-            {/*            </StyledStacksli>*/}
-            {/*        })*/}
-            {/*    }*/}
-            {/*</StyledStacksUl>*/}
         </>
     )
 });
