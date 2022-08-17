@@ -37,6 +37,8 @@ export const StyledQuestion = styled.div`
 `;
 
 export const StyledStacksUl = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
   margin: 30px 0;
   border-radius: 16px;
   border: 1px solid rgb(56, 68, 77);
@@ -45,45 +47,30 @@ export const StyledStacksUl = styled.ul`
 `;
 export const StyledStacksli = styled.li`
   display: inline-flex;
-  height: 36px;
-  border-radius: 5px;
-  margin: 3px 0 3px 3px;
-  padding:8px;
-  border: 1px solid rgb(56, 68, 77);
+  cursor:pointer;
   img {
-    height: 16px;
+    background-color: white;
+    width: 30px;
+    height: 30px;
     border-radius: 3px;
-  }
-  span {
-    margin-left: 3px;
-    vertical-align: middle;
-  }
-  button {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    font-size: 15px;
-    color: white;
-    font-weight: bold;
-    border: 0;
-    background-color: transparent;
-    border-radius: 5px;
+    margin: 3px 5px;
   }
 `;
 
-
-
 export const StyledLabel = styled.label`
+  position: relative;
   display: block;
   margin: 10px 0 10px 20px;
 `;
 
-export const StyledInputText = styled.input`
+type StyledInputTextProps = {
+  margin ?: string,
+};
+export const StyledInputText = styled.input<StyledInputTextProps>`
   display: block;
   width: 100%;
-  margin: 10px 0;
+  ${(props) => `margin: ${(props.margin ? props.margin:`10px 0`)};`};
   padding: 2px 5px;
-
   &:focus {
     outline: none;
   }
@@ -127,6 +114,20 @@ export const StyledCheckbox = styled.div`
     height: 30px;
   }
 `;
+type SelectedImgProps = {
+  width?: string,
+  height?: string,
+  checked?: boolean,
+};
+export const StyledImg = styled.img<SelectedImgProps>`
+  background-color: white;
+  ${(props) => `width: ${props.width ? props.width:`30px`};`};
+  ${(props) => `height: ${props.height ? props.height:`30px`};`};
+  border-radius: 3px;
+  margin: 5px;
+  ${(props) => `${props.checked && "opacity: 0.15;"}`};
+  cursor: pointer;
+`;
 export const StyledButton = styled.button`
   color: white;
   background-color: rgb(29, 155, 240);
@@ -141,4 +142,26 @@ export const StyledButton = styled.button`
     background-color: rgb(29, 155, 240, 0.9);
     transition: background-color 0.2s;
   }
+`;
+
+export const StyledStacksImg = styled.div`
+  margin: 10px 0 10px 20px;
+`;
+
+export const StyledRecommends = styled.div`
+  display: block;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  user-select: none;
+`;
+
+export const StyledRecommend = styled.div`
+  display: flex;
+  align-items: center;
+  color: black;
+  padding: 3px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
 `;

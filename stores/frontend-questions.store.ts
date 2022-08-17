@@ -27,19 +27,48 @@ export class FrontendQuestionsStore extends QuestionsStore {
         return selectedStacksArr;
     }
 
+    // @action
+    // public updateOrder = (idx: number) => {
+    //     if (this.frontendStacks[idx] <= 1) return;
+    //     for (let i = 0; i < FrontendStacks.length; i++) {
+    //         if (this.frontendStacks[i] === this.frontendStacks[idx]-1) {
+    //             this.frontendStacks[i] += 1;
+    //         }
+    //     }
+    //     this.frontendStacks[idx] -= 1;
+    // }
+
     @action
-    public updateOrder = (idx: number) => {
-        if (this.frontendStacks[idx] <= 1) return;
-        for (let i = 0; i < FrontendStacks.length; i++) {
-            if (this.frontendStacks[i] === this.frontendStacks[idx]-1) {
-                this.frontendStacks[i] += 1;
-            }
-        }
-        this.frontendStacks[idx] -= 1;
+    public updateDrag = (pastIdx:number, newIdx:number) => {
+        console.log(pastIdx, newIdx);
+        const pastOrder = this.frontendStacks[pastIdx];
+        this.frontendStacks[pastIdx] = this.frontendStacks[newIdx];
+        this.frontendStacks[newIdx] = pastOrder
+        /// 아래는 그 중간 것도 변경
+        // if (pastOrder < newOrder) {
+        //     for (let i = 0; i < FrontendStacks.length; i++) {
+        //         if (pastOrder < this.frontendStacks[i] && this.frontendStacks[i] <= newOrder) {
+        //             this.frontendStacks[i] -= 1;
+        //         }
+        //     }
+        //     this.frontendStacks[pastIdx] = newOrder;
+        // }
+        // else if (pastOrder > newOrder) {
+        //     for (let i = 0; i < FrontendStacks.length; i++) {
+        //         if (newOrder <= this.frontendStacks[i] && this.frontendStacks[i] < pastOrder) {
+        //             this.frontendStacks[i] += 1;
+        //         }
+        //     }
+        //     this.frontendStacks[pastIdx] = newOrder;
+        // }
     }
 
     @action
-    public updateFrontendStacks = (idx:number, value:boolean) => {
+    public updateFrontendStacks = (idx:number, value?:boolean) => {
+        if (idx < 0) return;
+        if (value === undefined) {
+            value = !(this.frontendStacks[idx] > 0);
+        }
         this.frontendCounts += (value?1:-1);
         if (!value) {
             for (let i = 0; i < FrontendStacks.length; i++) {

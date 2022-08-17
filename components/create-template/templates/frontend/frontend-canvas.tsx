@@ -58,7 +58,7 @@ const FrontendCanvas: NextPage = observer(() => {
             drawContents({
                 ctx,
                 x: 90,
-                y: 390,
+                y: 430,
                 color: themeColorStore.main,
                 colorNo: themeColorStore.no,
                 contents: questionStore.contents,
@@ -67,7 +67,7 @@ const FrontendCanvas: NextPage = observer(() => {
             drawFollows({
                 ctx,
                 x: 90,
-                y: 530,
+                y: 550,
                 color: themeColorStore.main,
                 colorNo: themeColorStore.no,
                 follows: questionStore.follows,

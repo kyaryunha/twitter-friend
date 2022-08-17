@@ -24,7 +24,6 @@ export const drawStacks = ({ctx, x, y, color, title, menu, selectedStacks}:drawS
     }
     let cnt = 0;
     selectedStacks.map((selectedIdx: number, idx:number) => {
-        // @ts-ignore
         drawImage(ctx,`${StacksFolder}${StacksFilename[stacksArr[selectedIdx]]}`,nx, ny,40, 40);
         nx += 45;
         cnt += 1;

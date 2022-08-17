@@ -43,4 +43,8 @@ export const StyledFooter = styled.div`
   padding-top: 10px;
   margin-top: 10px;
   border-top: 2px solid rgb(56, 68, 77);
+  a {
+    color: rgb(29, 155, 240);
+    text-decoration: none;
+  }
 `;
