@@ -159,10 +159,14 @@ export const StyledRecommends = styled.div`
   user-select: none;
 `;
 
-export const StyledRecommend = styled.div`
+type StyledRecommendProps = {
+  hoverRecommends?: boolean,
+}
+export const StyledRecommend = styled.div<StyledRecommendProps>`
   display: flex;
   align-items: center;
   color: black;
+  ${(props) => `${props.hoverRecommends && "background-color: rgb(29, 155, 240);"}`};
   padding: 3px;
   border-bottom: 1px solid black;
   cursor: pointer;

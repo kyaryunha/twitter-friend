@@ -13,15 +13,33 @@ import {frontendRecommends, textToSearchText} from "../../../../utils/searchStac
 const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({store}) => {
     const [keyword, setKeyword] = useState<string>("");
     const [recommends, setRecommends] = useState<string[]>([]);
+    const [hoverRecommends, setHoverRecommends] = useState<number>(-1);
+    const onSearchKeyDown = (e: any) => {
+        if (e.code === "ArrowDown") {
+            setHoverRecommends(prevHoverRecommends => Math.min(recommends.length-1, prevHoverRecommends+1));
+        }
+        else if (e.code === "ArrowUp") {
+            setHoverRecommends(prevHoverRecommends => Math.max(-1, prevHoverRecommends-1));
+        }
+        else if (e.code === "Enter") {
+            if (hoverRecommends === -1) return;
+            store.updateFrontendStacks(FrontendStacks.indexOf(recommends[hoverRecommends]));
+            setKeyword("");
+            setHoverRecommends(-1);
+            setRecommends(() =>[]);
+        }
+    };
     const onChangeRecommends = (newKeyword: string) => {
         newKeyword = textToSearchText(newKeyword);
         setKeyword(newKeyword);
         const newRecommends = frontendRecommends(newKeyword);
+        setHoverRecommends(-1);
         setRecommends(prevRecommends => newRecommends);
     };
     const onClickRecommend = (e:any, recommend:string) => {
         store.updateFrontendStacks(FrontendStacks.indexOf(recommend));
         setKeyword("");
+        setHoverRecommends(-1);
         setRecommends(() =>[]);
     }
 
@@ -54,8 +72,10 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
                     value={keyword}
                     onChange={(e) => {onChangeRecommends(e.target.value)}}
                     onBlur={() => {
+                        setHoverRecommends(-1);
                         setRecommends(() =>[]);
                     }}
+                    onKeyDown={(e) => onSearchKeyDown(e)}
                 />
                 {
                     keyword && !recommends && <StyledRecommends>
@@ -73,6 +93,7 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
                                     key={`recommend-${recommend}-${idx}`}
                                     onClick={(e) => onClickRecommend(e, recommend)}
                                     onMouseDown={(e)=>e.preventDefault()}
+                                    hoverRecommends={hoverRecommends === idx}
                                 >
                                     <StyledImg
                                         src={`${StacksFolder}${StacksFilename[recommend]}`}
