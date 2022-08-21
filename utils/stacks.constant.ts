@@ -161,6 +161,8 @@ export const StacksFilename: {
     "Tailwind CSS": "tailwind-css.png",
     "Meterial UI": "meterial-ui.png",
     "Chakra UI": "chakra-ui.png",
+    "Web XR": "webxr.png",
+    "Three.js": "threejs.png",
 };
 
 const Frontend:string[] = [
@@ -239,6 +241,8 @@ const Frontend:string[] = [
     "Gatsby Cloud",
     "Stitches",
     "Prismic",
+    "Web XR",
+    "Three.js"
 ];
 const Backend:string[] = [
 
