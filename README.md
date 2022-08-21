@@ -1,6 +1,6 @@
-## Twitter Friend
+# Twitter Friend
 
-#### Introduction
+## Introduction
 
 트친소란 트위터에서 SNS 친구를 구할 때, 스스로를 소개하는 것이다.
 
@@ -10,10 +10,11 @@
 
 이에 입력을 통해 쉽게 트친소 이미지를 생성해 다운받을 수 있는 사이트를 만들었다. 
 
-#### Website URL
-https://twitter-friend.vercel.app/
+## Website URL
 
-#### Templates
+<https://twitter-friend.vercel.app/>
+
+## Templates
 
 계정의 주제에 따라 트친소 이미지의 형식도 달라진다.
 이에 여러 주제에 맞는 템플릿을 만들고 있다.
@@ -26,10 +27,12 @@ https://twitter-friend.vercel.app/
 - 프론트엔드 트친소 (제작 예정)
   - 트친소(기본) + 기술 스택 (변경 및 추가 가능성 있음)
 
-#### Development Stacks
+## Development Stacks
+
 - React(Next.js), MobX, Emotion, Canvas, Vercel, Typescript, Google Analytics
   
-#### How to run 
+## How to run 
+
 ```bash
 # install 
 yarn install
@@ -40,7 +43,7 @@ yarn run build
 yarn start
 ```
 
-#### Authors
+## Authors
 
 Development: twitter @ shinhyun_main
 
