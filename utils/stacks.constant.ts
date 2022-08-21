@@ -163,6 +163,8 @@ export const StacksFilename: {
     "Chakra UI": "chakra-ui.png",
     "Web XR": "webxr.png",
     "Three.js": "threejs.png",
+    "Relay": "relay.png",
+    "Zustand": "zustand.png",
 };
 
 const Frontend:string[] = [
@@ -195,6 +197,7 @@ const Frontend:string[] = [
     "Redux",
     "React Query",
     "Recoil",
+    "Zustand",
     "Storybook",
     "Jest",
     "Mocha",
@@ -213,6 +216,8 @@ const Frontend:string[] = [
     "Tailwind CSS",
     "Meterial UI",
     "Chakra UI",
+    "GraphQL",
+    "Relay",
     "Webpack",
     "Grunt",
     "Gulp",
