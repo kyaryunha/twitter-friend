@@ -1,6 +1,6 @@
 ## Twitter Friend
 
-#### Introduce
+#### Introduction
 
 트친소란 트위터에서 SNS 친구를 구할 때, 스스로를 소개하는 것이다.
 
@@ -26,6 +26,9 @@ https://twitter-friend.vercel.app/
 - 프론트엔드 트친소 (제작 예정)
   - 트친소(기본) + 기술 스택 (변경 및 추가 가능성 있음)
 
+#### Development Stacks
+- React(Next.js), MobX, Emotion, Canvas, Vercel, Typescript, Google Analytics
+  
 #### How to run 
 ```bash
 # install 
@@ -37,7 +40,7 @@ yarn run build
 yarn start
 ```
 
-### Authors
+#### Authors
 
 Development: twitter @ shinhyun_main
 

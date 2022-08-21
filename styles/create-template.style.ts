@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {BREAKPOINTS, MediaQuery} from "./media-query";
+import exp from "constants";
 
 export const StyledCreateTemplate = styled.div`
   display: block;
@@ -10,6 +11,7 @@ export const StyledCreateTemplate = styled.div`
 export const StyledQuestions = styled.div`
   ${MediaQuery[1]} { 
     width: ${`${BREAKPOINTS[0]}px`};
+    margin-right: 20px;
   }
   ${MediaQuery[2]} {
     width:  ${`${BREAKPOINTS[1]}px`};
@@ -34,17 +36,43 @@ export const StyledQuestion = styled.div`
   font-size: 120%;
 `;
 
-export const StyledLabel = styled.label`
-  display: block;
-  margin: 10px 20px;
+export const StyledStacksUl = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px 0;
+  border-radius: 16px;
+  border: 1px solid rgb(56, 68, 77);
+  background-color: rgb(30, 39, 50);
+  padding: 5px;
+  user-select: none;
+`;
+export const StyledStacksli = styled.li`
+  display: inline-flex;
+  cursor:pointer;
+  img, svg {
+    background-color: white;
+    color: black;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    margin: 3px 5px;
+  }
 `;
 
-export const StyledInputText = styled.input`
+export const StyledLabel = styled.label`
+  position: relative;
+  display: block;
+  margin: 10px 0 10px 20px;
+`;
+
+type StyledInputTextProps = {
+  margin ?: string,
+};
+export const StyledInputText = styled.input<StyledInputTextProps>`
   display: block;
   width: 100%;
-  margin: 10px 0;
+  ${(props) => `margin: ${(props.margin ? props.margin:`10px 0`)};`};
   padding: 2px 5px;
-
   &:focus {
     outline: none;
   }
@@ -74,7 +102,6 @@ export const StyledCheckbox = styled.div`
     display: inline-block;
     width: 25px;
     height: 25px;
-    margin-right: 10px;
     cursor: pointer;
     accent-color: rgb(29, 155, 240, 0.9);
     clip-path: circle(45% at 50% 50%);
@@ -84,9 +111,24 @@ export const StyledCheckbox = styled.div`
   }
   label {
     margin-top: 2px;
-    margin-right: 15px;
+    padding-left: 5px;
+    margin-right: 10px;
     height: 30px;
   }
+`;
+type SelectedImgProps = {
+  width?: string,
+  height?: string,
+  checked?: boolean,
+};
+export const StyledImg = styled.img<SelectedImgProps>`
+  background-color: white;
+  ${(props) => `width: ${props.width ? props.width:`30px`};`};
+  ${(props) => `height: ${props.height ? props.height:`30px`};`};
+  border-radius: 3px;
+  margin: 5px;
+  ${(props) => `${props.checked && "opacity: 0.15;"}`};
+  cursor: pointer;
 `;
 export const StyledButton = styled.button`
   color: white;
@@ -102,4 +144,30 @@ export const StyledButton = styled.button`
     background-color: rgb(29, 155, 240, 0.9);
     transition: background-color 0.2s;
   }
+`;
+
+export const StyledStacksImg = styled.div`
+  margin: 10px 0 10px 20px;
+`;
+
+export const StyledRecommends = styled.div`
+  display: block;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  user-select: none;
+`;
+
+type StyledRecommendProps = {
+  hoverRecommends?: boolean,
+}
+export const StyledRecommend = styled.div<StyledRecommendProps>`
+  display: flex;
+  align-items: center;
+  color: black;
+  ${(props) => `${props.hoverRecommends && "background-color: rgb(29, 155, 240);"}`};
+  padding: 3px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
 `;

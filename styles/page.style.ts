@@ -17,7 +17,7 @@ export const StyledTitle = styled.div`
   font-size: 200%;
   padding-bottom: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid rgb(56, 68, 77);
   a {
     color: inherit;
     text-decoration: none;
@@ -42,5 +42,9 @@ export const StyledDiv = styled.div<StyledDivProps>`
 export const StyledFooter = styled.div`
   padding-top: 10px;
   margin-top: 10px;
-  border-top: 1px solid white;
+  border-top: 2px solid rgb(56, 68, 77);
+  a {
+    color: rgb(29, 155, 240);
+    text-decoration: none;
+  }
 `;

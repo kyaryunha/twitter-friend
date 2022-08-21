@@ -19,22 +19,22 @@ type QuestionsProps = {
     menu: string,
 }
 const AlgorithmQuestions: FC<QuestionsProps> = observer(({menu}) => {
-    const {algorithmQuestionsStore}=useStores();
+    const {algorithmQuestionsStore:questionsStore}=useStores();
     return (
         <StyledQuestions>
             <StyledSubTitle>
                 {menu} 트친소 짤 생성기
             </StyledSubTitle>
             정보들을 입력해주세요!
-            <QuestionTwitterNicknameAndId store={algorithmQuestionsStore}/>
-            <QuestionOnlineJudge store={algorithmQuestionsStore} />
-            <QuestionGithubAndWebsites store={algorithmQuestionsStore} />
-            <QuestionContents store={algorithmQuestionsStore} textArr={algorithmContentsTextArr} />
-            <QuestionLikes store={algorithmQuestionsStore} />
-            <QuestionDislikes store={algorithmQuestionsStore} />
-            <QuestionFollows store={algorithmQuestionsStore} />
-            <QuestionFarewells store={algorithmQuestionsStore} />
-            <QuestionIntroduce store={algorithmQuestionsStore} />
+            <QuestionTwitterNicknameAndId store={questionsStore}/>
+            <QuestionOnlineJudge store={questionsStore} />
+            <QuestionGithubAndWebsites store={questionsStore} />
+            <QuestionContents store={questionsStore} textArr={algorithmContentsTextArr} />
+            <QuestionLikes store={questionsStore} />
+            <QuestionDislikes store={questionsStore} />
+            <QuestionFollows store={questionsStore} />
+            <QuestionFarewells store={questionsStore} />
+            <QuestionIntroduce store={questionsStore} />
         </StyledQuestions>
     )
 });

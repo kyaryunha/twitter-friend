@@ -1,6 +1,5 @@
 import {observer} from "mobx-react";
 import {StyledButton, StyledCanvasBoard} from "../../styles/create-template.style";
-import {NextPage} from "next";
 import {StyledDiv, StyledSubTitle } from "../../styles/page.style";
 import {useStores} from "../../stores";
 import {event} from "../../utils/gtag";
