@@ -30,8 +30,8 @@ const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({stor
         }
     };
     const onChangeRecommends = (newKeyword: string) => {
-        newKeyword = textToSearchText(newKeyword);
         setKeyword(newKeyword);
+        newKeyword = textToSearchText(newKeyword);
         const newRecommends = frontendRecommends(newKeyword);
         setHoverRecommends(-1);
         setRecommends(prevRecommends => newRecommends);

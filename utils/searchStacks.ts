@@ -12,6 +12,7 @@ export const FrontendSearchResult:{
     "scss": "SASS",
     "webassembly": "Wasm",
     "mui": "Meterial UI",
+    "xr": "Web XR",
 };
 FrontendStacks.forEach((key:string) => {
     const searchKey = textToSearchText(key);
