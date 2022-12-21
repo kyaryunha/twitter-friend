@@ -7,7 +7,7 @@ import {
     StyledSelect
 } from "../../../../styles/create-template.style";
 import {FC} from "react";
-import {AlgorithmQuestionsStoreTypes} from "../../../../stores/algorithm-questions.store";
+import {AlgorithmQuestionsStoreTypes} from "../../../../stores/questions/algorithm.store";
 import {AtcoderTiers, CodeforcesTiers, SolvedAcTiers} from "../../../../utils/online-judge.constant";
 const QuestionOnlineJudge: FC<AlgorithmQuestionsStoreTypes>  = observer(({store}) => {
         return (

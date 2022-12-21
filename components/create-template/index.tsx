@@ -10,6 +10,10 @@ import {MenuText} from "../../utils";
 import Menu from "../../pages/[menu]";
 import FrontendQuestions from "./templates/frontend/frontend-questions";
 import FrontendCanvas from "./templates/frontend/frontend-canvas";
+import PokemonCanvas from "./templates/pokemon/pokemon-canvas";
+import PokemonQuestions from "./templates/pokemon/pokemon-questions";
+import OtakuQuestions from "./templates/otaku/otaku-questions";
+import OtakuCanvas from "./templates/otaku/otaku-canvas";
 type CreateTemplateProps = {
     menu: string,
 }
@@ -21,6 +25,13 @@ const CreateTemplate: FC<CreateTemplateProps>  = observer(({menu}) => {
                     <BasicQuestions menu={menu}/>
                     {/*@ts-ignore*/}
                     <CanvasBoard canvas={<BasicCanvas />} menu={menu}/>
+                </>
+            }
+            {
+                menu === MenuText.otaku && <>
+                    <OtakuQuestions menu={menu}/>
+                    {/*@ts-ignore*/}
+                    <CanvasBoard canvas={<OtakuCanvas />} menu={menu}/>
                 </>
             }
             {

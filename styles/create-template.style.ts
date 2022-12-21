@@ -65,6 +65,13 @@ export const StyledLabel = styled.label`
   margin: 10px 0 10px 20px;
 `;
 
+export const StyledInputFile = styled.input`
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 2px 5px;
+`;
+
 type StyledInputTextProps = {
   margin ?: string,
 };

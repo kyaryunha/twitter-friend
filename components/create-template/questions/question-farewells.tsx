@@ -3,7 +3,7 @@ import {StyledCheckbox, StyledQuestion} from "../../../styles/create-template.st
 import {FC} from "react";
 import {QuestionsStoreTypes} from "../../../stores/questions.store";
 import {farewellsTextArr} from "../../../utils/questions.text";
-const QuestionTwitterNicknameAndId: FC<QuestionsStoreTypes>  = observer(({store}) => {
+const QuestionFarewells: FC<QuestionsStoreTypes>  = observer(({store}) => {
         return (
             <>
                 <StyledQuestion>
@@ -27,4 +27,4 @@ const QuestionTwitterNicknameAndId: FC<QuestionsStoreTypes>  = observer(({store}
     }
 );
 
-export default QuestionTwitterNicknameAndId;
+export default QuestionFarewells;

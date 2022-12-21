@@ -11,15 +11,15 @@ const QuestionGithubAndWebsites: FC<QuestionsStoreTypes>  = observer(({store}) =
             </StyledQuestion>
             <StyledLabel>
                 깃헙
-                <StyledInputText type="text" placeholder="kyaryunha (없으면 공백)" value={store.githubId} onChange={(e) =>store.updateGithubId(e.target.value)} />
+                <StyledInputText type="text" placeholder="ex. kyaryunha (없으면 공백)" value={store.githubId} onChange={(e) =>store.updateGithubId(e.target.value)} />
             </StyledLabel>
             <StyledLabel>
                 웹사이트1
-                <StyledInputText type="text" placeholder="www.kyaryunha.com (없으면 공백)" value={store.url1} onChange={(e) =>store.updateUrl1(e.target.value)} />
+                <StyledInputText type="text" placeholder="ex. www.kyaryunha.com (없으면 공백)" value={store.url1} onChange={(e) =>store.updateUrl1(e.target.value)} />
             </StyledLabel>
             <StyledLabel>
                 웹사이트2
-                <StyledInputText type="text" placeholder="twitter-friend.vercel.app (없으면 공백)" value={store.url2} onChange={(e) =>store.updateUrl2(e.target.value)} />
+                <StyledInputText type="text" placeholder="ex. twitter-friend.vercel.app (없으면 공백)" value={store.url2} onChange={(e) =>store.updateUrl2(e.target.value)} />
             </StyledLabel>
             </>
         )

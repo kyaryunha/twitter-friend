@@ -7,7 +7,7 @@ import {
     StyledStacksUl,
 } from "../../../../styles/create-template.style";
 import {FC, useState} from "react";
-import {FrontendQuestionsStoreTypes} from "../../../../stores/frontend-questions.store";
+import {FrontendQuestionsStoreTypes} from "../../../../stores/questions/frontend.store";
 import {FrontendStacks, StacksFilename, StacksFolder} from "../../../../utils/stacks.constant";
 import {frontendRecommends, textToSearchText} from "../../../../utils/searchStacks";
 const QuestionFrontendStacks: FC<FrontendQuestionsStoreTypes>  = observer(({store}) => {

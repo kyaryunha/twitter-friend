@@ -2,7 +2,7 @@ import {
     farewellsTextArr,
     followsTextArr
 } from "../../../utils/questions.text";
-import {ctxFont, ctxInit, drawImage, drawNormalText, drawTitle} from "./draw.util";
+import {createImage, ctxFont, ctxInit, drawImage, drawNormalText, drawTitle, getWH} from "./draw.util";
 
 type drawBasicFrameProps = {
     ctx: any,
@@ -46,11 +46,12 @@ type drawTwitterProps = {
     twitterNickname?: string,
 }
 
-export const drawTwitter = ({ctx, x, y, color, twitterId, twitterNickname}:drawTwitterProps) => {
+export const drawTwitter = async ({ctx, x, y, color, twitterId, twitterNickname}:drawTwitterProps) => {
     let nx = x;
     let ny = y;
     ctxInit(ctx);
-    drawImage(ctx, "twitter.png", nx, ny, 70, 70);
+    let img = await createImage("twitter.png");
+    drawImage(ctx, img, nx, ny, 70, 70);
     nx += 85;
     ny += 50;
     // 닉넴 & 아이디 표기
@@ -69,6 +70,22 @@ export const drawTwitter = ({ctx, x, y, color, twitterId, twitterNickname}:drawT
     }
 }
 
+type drawProfileImageProps = {
+    ctx: any,
+    x: number,
+    y: number,
+    profileImage: File|null
+}
+export const drawProfileImage = async ({ctx, x, y, profileImage}: drawProfileImageProps) => {
+    let nx = x;
+    let ny = y;
+    ctxInit(ctx);
+    if (profileImage !== null) {
+        let img = await createImage(URL.createObjectURL(profileImage));
+        drawImage(ctx, img, nx, ny, 200, 200);
+    }
+}
+
 type drawGithubAndUrlsProps = {
     ctx: any,
     x: number,
@@ -78,12 +95,13 @@ type drawGithubAndUrlsProps = {
     url2?: string,
 };
 
-export const drawGithubAndUrls = ({ctx, x, y, githubId, url1, url2}: drawGithubAndUrlsProps) => {
+export const drawGithubAndUrls = async ({ctx, x, y, githubId, url1, url2}: drawGithubAndUrlsProps) => {
     let nx = x;
     let ny = y;
     ctxInit(ctx);
     if (githubId) {
-        drawImage(ctx, "github.png", nx, ny-25, 30, 30);
+        let img = await createImage("github.png");
+        drawImage(ctx, img, nx, ny-25, 30, 30);
         ctx.beginPath();
         ctxFont(ctx, 30);
         ctx.fillText(githubId, nx+40, ny);

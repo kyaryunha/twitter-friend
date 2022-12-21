@@ -4,15 +4,15 @@ import {StyledDiv, StyledSubTitle } from "../../styles/page.style";
 import {useStores} from "../../stores";
 import {event} from "../../utils/gtag";
 import {FC} from "react";
+import {MenuText} from "../../utils";
 
 type CanvasBoardProps = {
     canvas: any,
     menu: string,
 }
 export const CanvasBoard: FC<CanvasBoardProps> = observer(({ canvas, menu }:CanvasBoardProps) => {
-    const {themeColorStore} = useStores();
+    const {themeColorStore, otakuQuestionStore} = useStores();
     const handleClickDownload = async () => {
-        console.log(menu);
         let link = document.createElement('a');
         link.download = 'twitter-friend.png';
         link.href = document.getElementsByTagName('canvas')[0].toDataURL()
@@ -24,10 +24,22 @@ export const CanvasBoard: FC<CanvasBoardProps> = observer(({ canvas, menu }:Canv
                 label: `${menu} 트친소 이미지 다운로드`,
                 value: "",
             });
+            if (menu == MenuText.otaku) {
+                event({
+                    action: "다운로드 버튼 클릭 - 덕질",
+                    category: "Event",
+                    label: `${otakuQuestionStore.genreName} 트친소 이미지 다운로드`,
+                    value: "",
+                });
+            }
         }
     };
     const handleClickTwitter = async () => {
-        const url_default_tw_txt = `https://twitter.com/intent/tweet?text=%23${menu}_트친소 `;
+        let tchisoName = menu;
+        if (menu == MenuText.otaku) {
+            tchisoName = otakuQuestionStore.genreName;
+        }
+        const url_default_tw_txt = `https://twitter.com/intent/tweet?text=%23${tchisoName}_트친소 `;
         const url_default_tw_url = "&url=";
         const url_this_page = encodeURIComponent(location.href);
         const title_this_page = encodeURIComponent(document.title);
@@ -40,6 +52,14 @@ export const CanvasBoard: FC<CanvasBoardProps> = observer(({ canvas, menu }:Canv
                 label: `${menu} 트친소 공유`,
                 value: "",
             });
+            if (menu == MenuText.otaku) {
+                event({
+                    action: "공유 버튼 클릭 - 덕질",
+                    category: "Event",
+                    label: `${otakuQuestionStore.genreName} 트친소 공유`,
+                    value: "",
+                });
+            }
         }
     }
     return <>

@@ -1,13 +1,13 @@
 import {action, computed, makeObservable, observable} from "mobx";
-import {QuestionsStore} from "./questions.store";
-import {FrontendStacks} from "../utils/stacks.constant";
-import {developmentsContentsTextArr} from "../utils/questions.text";
+import {QuestionsStore} from "../questions.store";
+import {FrontendStacks} from "../../utils/stacks.constant";
+import {developmentsContentsTextArr} from "../../utils/questions.text";
 
 export type FrontendQuestionsStoreTypes = {
-    store: FrontendQuestionsStore,
+    store: FrontendStore,
 }
 
-export class FrontendQuestionsStore extends QuestionsStore {
+export class FrontendStore extends QuestionsStore {
     @observable frontendStacks:number[] = Array(FrontendStacks.length).fill(false);
     @observable frontendCounts:number = 0;
 
