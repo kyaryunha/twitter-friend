@@ -1,5 +1,5 @@
 import {AtcoderTiers, CodeforcesTiers, SolvedAcTiers} from "../../../utils/online-judge.constant";
-import {ctxInit, drawImage, drawNormalText, drawTitle} from "./draw.util";
+import {createImage, ctxInit, drawImage, drawNormalText, drawTitle} from "./draw.util";
 
 
 type drawAlgorithmOJProps = {
@@ -14,14 +14,15 @@ type drawAlgorithmOJProps = {
     atcoderId: string,
     atcoderTier: number,
 };
-export const drawAlgorithmOJ = ({ctx, x, y, color, bojId, solvedacTier, codeforcesId, codeforcesTier, atcoderId, atcoderTier}: drawAlgorithmOJProps) => {
+export const drawAlgorithmOJ = async ({ctx, x, y, color, bojId, solvedacTier, codeforcesId, codeforcesTier, atcoderId, atcoderTier}: drawAlgorithmOJProps) => {
     let nx = x;
     let ny = y;
     ctxInit(ctx);
     drawTitle(ctx, "온라인저지", nx, ny, color);
     ny += 50;
     if (bojId) {
-        drawImage(ctx, "oj/boj.png", nx, ny-30, 40, 40);
+        let bojImg = await createImage("oj/boj.png");
+        drawImage(ctx, bojImg , nx, ny-30, 40, 40);
         ctx.fontWeight = "bold";
         if (solvedacTier===1) {
             let gradient = ctx.createLinearGradient(nx,ny+15,nx, ny-30);
@@ -41,7 +42,8 @@ export const drawAlgorithmOJ = ({ctx, x, y, color, bojId, solvedacTier, codeforc
         ny += 40;
     }
     if (codeforcesId) {
-        drawImage(ctx, "oj/codeforces.png", nx, ny-35, 40, 40);
+        let codeforcesImg = await createImage("oj/codeforces.png");
+        drawImage(ctx, codeforcesImg , nx, ny-30, 40, 40);
         ctx.fontWeight = "bold";
         if (codeforcesTier === 1) {
             ctx.fillStyle = "black";
@@ -74,7 +76,8 @@ export const drawAlgorithmOJ = ({ctx, x, y, color, bojId, solvedacTier, codeforc
         ny += 40;
     }
     if (atcoderId) {
-        drawImage(ctx, "oj/atcoder.png", nx, ny-30, 40, 40);
+        let atcoderImg = await createImage("oj/atcoder.png");
+        drawImage(ctx, atcoderImg, nx, ny-30, 40, 40);
         ctx.fontWeight = "bold";
         ctx.fillStyle = AtcoderTiers[atcoderTier][1];
         drawNormalText(ctx, atcoderId, nx+50, ny);

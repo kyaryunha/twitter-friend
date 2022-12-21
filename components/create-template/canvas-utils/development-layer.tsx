@@ -1,4 +1,4 @@
-import {ctxInit, drawImage, drawTitle} from "./draw.util";
+import {createImage, ctxInit, drawImage, drawTitle} from "./draw.util";
 import {MenuText} from "../../../utils";
 import {FrontendStacks, StacksFilename, StacksFolder} from "../../../utils/stacks.constant";
 
@@ -12,7 +12,7 @@ type drawStacks = {
     selectedStacks: number[],
 };
 
-export const drawStacks = ({ctx, x, y, color, title, menu, selectedStacks}:drawStacks) => {
+export const drawStacks = async ({ctx, x, y, color, title, menu, selectedStacks}:drawStacks) => {
     let nx = x;
     let ny = y;
     ctxInit(ctx);
@@ -23,8 +23,9 @@ export const drawStacks = ({ctx, x, y, color, title, menu, selectedStacks}:drawS
         stacksArr = FrontendStacks;
     }
     let cnt = 0;
-    selectedStacks.map((selectedIdx: number, idx:number) => {
-        drawImage(ctx,`${StacksFolder}${StacksFilename[stacksArr[selectedIdx]]}`,nx, ny,40, 40);
+    selectedStacks.map(async (selectedIdx: number, idx:number) => {
+        let img = await createImage(`${StacksFolder}${StacksFilename[stacksArr[selectedIdx]]}`);
+        drawImage(ctx, img, nx, ny,40, 40);
         nx += 45;
         cnt += 1;
         if (cnt % 15 === 0) {

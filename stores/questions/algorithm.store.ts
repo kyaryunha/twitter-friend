@@ -1,13 +1,13 @@
 import {action, makeObservable, observable} from "mobx";
-import {QuestionsStore} from "./questions.store";
-import {algorithmContentsTextArr} from "../utils/questions.text";
+import {QuestionsStore} from "../questions.store";
+import {algorithmContentsTextArr} from "../../utils/questions.text";
 
 
 export type AlgorithmQuestionsStoreTypes = {
-    store: AlgorithmQuestionsStore,
+    store: AlgorithmStore,
 }
 
-export class AlgorithmQuestionsStore extends QuestionsStore {
+export class AlgorithmStore extends QuestionsStore {
     @observable bojId:string = "";
     @observable solvedacTier: number = 0;
     @observable codeforcesId:string = "";

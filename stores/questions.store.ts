@@ -21,6 +21,7 @@ export class QuestionsStore {
     @observable introduce:string = "";
     @observable follows: boolean[] = Array(followsTextArr.length).fill(false);
     @observable farewells: boolean[] = Array(farewellsTextArr.length).fill(false);
+    @observable profileImage: File|null = null;
 
     @action
     public updateTwitterId = (twitterId:string) => {
@@ -77,6 +78,11 @@ export class QuestionsStore {
         this.farewells[idx] = value;
     }
 
+    @action
+    public updateProfileImage = (profileImage:File|null) => {
+        if (profileImage === undefined) profileImage = null;
+        this.profileImage = profileImage;
+    }
 
     constructor({contentsLength}: QuestionsStoreProps) {
         if (contentsLength !== undefined) {
