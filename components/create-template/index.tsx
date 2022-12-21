@@ -7,11 +7,8 @@ import CanvasBoard from "./canvas-board";
 import AlgorithmCanvas from "./templates/algorithm/algorithm-canvas";
 import BasicCanvas from "./templates/basic/basic-canvas";
 import {MenuText} from "../../utils";
-import Menu from "../../pages/[menu]";
 import FrontendQuestions from "./templates/frontend/frontend-questions";
 import FrontendCanvas from "./templates/frontend/frontend-canvas";
-import PokemonCanvas from "./templates/pokemon/pokemon-canvas";
-import PokemonQuestions from "./templates/pokemon/pokemon-questions";
 import OtakuQuestions from "./templates/otaku/otaku-questions";
 import OtakuCanvas from "./templates/otaku/otaku-canvas";
 type CreateTemplateProps = {
